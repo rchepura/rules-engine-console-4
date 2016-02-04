@@ -318,21 +318,17 @@ a {
 #new-action .modal-dialog {
   width: 800px;
 }
+#new-rule .modal-body,
+#new-action .modal-body {
+  pading: 0;
+}
 #new-rule .create-window,
 #new-action .create-window {
-  padding: 50px 20px 10px;
+  padding: 20px 20px 10px;
   min-height: 300px;
 }
-#new-rule .create-window .new-window-box,
-#new-action .create-window .new-window-box {
-  border: 1px solid #ccc;
-  min-height: 300px;
-  width: 100%;
-  padding: 20px;
-  margin-bottom: 60px;
-}
-#new-rule .create-window .new-window-box .rule-action-pane,
-#new-action .create-window .new-window-box .rule-action-pane {
+#new-rule .create-window .rule-action-pane,
+#new-action .create-window .rule-action-pane {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin: 15px 0;
@@ -342,11 +338,22 @@ a {
 #new-action .text-cell {
   padding: 0;
 }
+#new-rule .condition-jexl-box,
+#new-action .condition-jexl-box {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px 30px 0;
+}
+#new-rule .condition-jexl-box select,
+#new-action .condition-jexl-box select {
+  text-align: center;
+}
 #new-rule code,
 #new-action code {
   display: block;
-  min-height: 30px;
+  min-height: 50px;
   width: 100%;
+  margin-top: 20px;
 }
 @media (max-width: 992px) {
 }

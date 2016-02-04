@@ -31,10 +31,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         events: {
             'click .add-rule': "onAddRule",
-//            'click .save-rule': "saveRule",
             'click .remove-rule': "removeRule",
             'click .add-action': "onAddAction",
-//            'click .save-action': "saveAction",
             'click .remove-action': "removeAction",
             'click .list-row': "selectListRow"
         },
@@ -49,7 +47,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $elParent.find('.list-row.active').removeClass('active');
                 $elem.addClass('active');
                 $elParent.find('.remove-rule, .remove-action').attr('disabled', false);
-                console.log('itemId: ' + itemId);
+
                 if ( me.AllRules[itemId] ) {
 //                    me.$el.find('.new-action-container .new-window-box').fadeOut();
                     me.$el.find('.new-rule-container .new-window-box').fadeIn();
@@ -80,6 +78,12 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             } else {
                 $elem.removeClass('active');
                 $elParent.find('.remove-rule, .remove-action').attr('disabled', true);
+                
+                if ( me.AllRules[itemId] ) {
+                    me.$el.find('.new-rule-container .new-window-box').fadeOut();
+                } else if ( me.AllActions[itemId] ) {
+                    me.$el.find('.new-action-container .new-window-box').fadeOut();
+                }
             }
         },
         onAddRule: function(e) {
@@ -191,8 +195,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 
                 data.conditionJexl = escape($('code.condition-jexl').text());
                 
-                console.dir(data);
-                
                 top.RULESDATA = data;
                 
                 if ( !data.ruleName ) {
@@ -264,9 +266,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 model = new me.Model(),
                 data = {};
                 
-                top.$elem = $elem;
-                top.JJJ = $inputFields;
-                
                 $inputFields.each(function() {
                     var $this = $(this);
                     
@@ -278,8 +277,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 });
                 
                 data.timeCreated = (new Date()).getTime();
-                
-                console.dir(data);
                 
                 top.NEW_ACTION_DATA = data;
                 
@@ -423,7 +420,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 
                 $('code.condition-jexl').text('type == ' + $ruleType.val() 
                     + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
-                    + ' &&  time.minuteOfHour()' + $selectMinsCond.val()  + ' ' + $selectMins.val());
+                    + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());
                 
             });
             

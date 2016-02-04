@@ -201,7 +201,7 @@ block content
                     label.col-sm-2.control-label(for="expirationHour") Hours
                     .col-sm-2(style="padding: 0px;")
                         input.form-control(type="text", name="expirationHour", value!="<%- model.expirationHour %>")
-                    label.col-sm-2.control-label(for="emailId") Minutes
+                    label.col-sm-2.control-label(for="expirationMin") Mins
                     .col-sm-2(style="padding: 0px;")
                         input.form-control(type="text", name="expirationMin", value!="<%- model.expirationMin %>")
                     label.col-sm-2.control-label(for="expirationDays") Days
@@ -211,73 +211,60 @@ block content
         #new-rule.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
             .modal-dialog
                 .modal-content
-                    .modal-header
-                        h4
                     .modal-body.clearfix
                         .create-window.new-rule-container
-                            .new-window-box
-                                form.form-horizontal(role="form",  onsubmit="return false;")
-                                    .form-group
-                                        label.col-sm-3.control-label(for="ruleName") Name
-                                        .col-sm-7(style="padding: 0px;")
-                                            input.rule-field.form-control(type="text", name="ruleName", value="")
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        label.col-sm-3.control-label(for="description") Description
-                                        .col-sm-7(style="padding: 0px;")
-                                            input.rule-field.form-control(type="text", name="description", value="")
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        label.col-sm-3.control-label(for="action") Action
-                                        .col-sm-7(style="padding: 0px;")
-                                            select.form-control(name="action")
-                                        .col-sm-2 &nbsp;
-                                        .col-sm-3 &nbsp;
-                                        .col-sm-7.rule-action-pane
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        label.col-sm-3.control-label Condition Jexl
-                                        label.col-sm-2.control-label Type
-                                        .col-sm-5(style="padding: 0px;")
-                                            input.rule-field.form-control(type="text", name="condition-type", value="")
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        .col-sm-3 &nbsp;
-                                        label.col-sm-2.control-label Day
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="rule-day")
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        .col-sm-3 &nbsp;
-                                        label.col-sm-2.control-label
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="condition-day")
-                                                option >
-                                                option ==
-                                                option <
-                                                option !=
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        .col-sm-3 &nbsp;
-                                        label.col-sm-2.control-label Minutes
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="rule-min")
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        .col-sm-3 &nbsp;
-                                        label.col-sm-2.control-label
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="condition-min")
-                                                option >
-                                                option ==
-                                                option <
-                                                option !=
-                                        .col-sm-2 &nbsp;
-                                    .form-group
-                                        .col-sm-3 &nbsp;
-                                        .col-sm-7.text-cell
-                                            code.condition-jexl
-                                        .col-sm-2 &nbsp;
+                            form.form-horizontal(role="form",  onsubmit="return false;")
+                                .form-group
+                                    label.col-sm-3.control-label(for="ruleName") Name
+                                    .col-sm-7(style="padding: 0px;")
+                                        input.rule-field.form-control(type="text", name="ruleName", value="")
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label(for="description") Description
+                                    .col-sm-7(style="padding: 0px;")
+                                        input.rule-field.form-control(type="text", name="description", value="")
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label(for="action") Action
+                                    .col-sm-7(style="padding: 0px;")
+                                        select.form-control(name="action")
+                                    .col-sm-2 &nbsp;
+                                    .col-sm-3 &nbsp;
+                                    .col-sm-7.rule-action-pane
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Condition Jexl
+                                    .col-sm-7.condition-jexl-box
+                                        .form-group
+                                            label.col-sm-2.control-label Type
+                                            .col-sm-10(style="padding: 0px;")
+                                                input.rule-field.form-control(type="text", name="condition-type", value="")
+                                        .form-group.text-center &&
+                                        .form-group
+                                            label.col-sm-5.control-label Hours of Day
+                                            .col-sm-3(style="padding: 0px;")
+                                                select.form-control(name="condition-day")
+                                                    option >
+                                                    option ==
+                                                    option <
+                                                    option !=
+                                            .col-sm-4(style="padding-right: 0px;")
+                                                select.form-control(name="rule-day")
+                                        .form-group.text-center &&
+                                        .form-group
+                                            label.col-sm-5.control-label Minutes Of Hour
+                                            .col-sm-3(style="padding: 0px;")
+                                                select.form-control(name="condition-min")
+                                                    option >
+                                                    option ==
+                                                    option <
+                                                    option !=
+                                            .col-sm-4(style="padding-right: 0px;")
+                                                select.form-control(name="rule-min")
+                                        .form-group
+                                            .col-sm-12.text-cell
+                                                code.condition-jexl
+                                    .col-sm-2 &nbsp;
                     .modal-footer
                         button.btn.btn-primary.save-rule(data-dismiss="modal", style="margin-right: 20px;", type="button") Save
                         button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
@@ -322,7 +309,7 @@ block content
                                         label.col-sm-3.control-label(for="expirationHour") Expiration Hours
                                         .col-sm-1(style="padding: 0px;")
                                             input.form-control(type="text", name="expirationHour", value="")
-                                        label.col-sm-2.control-label(for="emailId") Minutes
+                                        label.col-sm-2.control-label(for="expirationMin") Minutes
                                         .col-sm-1(style="padding: 0px;")
                                             input.form-control(type="text", name="expirationMin", value="")
                                         label.col-sm-2.control-label(for="expirationDays") Days
