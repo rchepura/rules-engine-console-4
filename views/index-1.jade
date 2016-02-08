@@ -149,16 +149,6 @@ block content
                                     h5#action-expirationDays.text-field 4
                                 .col-sm-2 &nbsp;
 
-        script#templateHoursView(type="text/template")
-            <% for ( var i = 0; i <= 23; i++ ) { %>
-            option(value!="<%- i %>") <%- i %>
-            <% } %>
-
-        script#templateMinsView(type="text/template")
-            <% for ( var i = 0; i <= 59; i++ ) { %>
-            option(value!="<%- i %>") <%- i %>
-            <% } %>
-            
         script#templateRulesView(type="text/template")
             <% _.each(data, function(model, key) { %>
             .row.list-row(did!="<%- model.hotpotCardsRuleId %>")
@@ -225,50 +215,26 @@ block content
                         .create-window.new-rule-container
                             form.form-horizontal(role="form",  onsubmit="return false;")
                                 .form-group
-                                    label.col-sm-2.control-label(for="ruleName") Name
-                                    .col-sm-9(style="padding: 0px;")
+                                    label.col-sm-3.control-label(for="ruleName") Name
+                                    .col-sm-7(style="padding: 0px;")
                                         input.rule-field.form-control(type="text", name="ruleName", value="")
-                                    .col-sm-1 &nbsp;
-                                .form-group
-                                    label.col-sm-2.control-label(for="description") Description
-                                    .col-sm-9(style="padding: 0px;")
-                                        input.rule-field.form-control(type="text", name="description", value="")
-                                    .col-sm-1 &nbsp;
-                                .form-group
-                                    label.col-sm-2.control-label(for="action") Action
-                                    .col-sm-9(style="padding: 0px;")
-                                        select.form-control(name="action")
-                                    .col-sm-1 &nbsp;
                                     .col-sm-2 &nbsp;
-                                    .col-sm-9.rule-action-pane
-                                    .col-sm-1 &nbsp;
                                 .form-group
-                                    label.col-sm-2.control-label Condition Jexl
-                                    .col-sm-9.condition-jexl-box
-                                        .form-group
-                                            label.col-sm-4.control-label Hour of Day &nbsp;&nbsp; >
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#start-hour-1.form-control
-                                            label.col-sm-4.control-label && &nbsp;&nbsp; Hour of Day &nbsp;&nbsp;&nbsp;&nbsp; <
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#end-hour-1.form-control
-                                        .form-group.text-center ||
-                                        .form-group
-                                            label.col-sm-4.control-label HourOfDay &nbsp;&nbsp; ==
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#start-hour-2.form-control
-                                            label.col-sm-4.control-label && &nbsp; MinuteOfHour &nbsp;&nbsp; >
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#end-min-1.form-control
-                                        .form-group.text-center ||
-                                        .form-group
-                                            label.col-sm-4.control-label HourOfDay &nbsp;&nbsp; ==
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#start-hour-3.form-control
-                                            label.col-sm-4.control-label && &nbsp; MinuteOfHour &nbsp;&nbsp; <
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#end-min-2.form-control
-                                        .form-group.text-center &&
+                                    label.col-sm-3.control-label(for="description") Description
+                                    .col-sm-7(style="padding: 0px;")
+                                        input.rule-field.form-control(type="text", name="description", value="")
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label(for="action") Action
+                                    .col-sm-7(style="padding: 0px;")
+                                        select.form-control(name="action")
+                                    .col-sm-2 &nbsp;
+                                    .col-sm-3 &nbsp;
+                                    .col-sm-7.rule-action-pane
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Condition Jexl
+                                    .col-sm-7.condition-jexl-box
                                         .form-group
                                             label.col-sm-2.control-label Type
                                             .col-sm-10(style="padding: 0px;")
@@ -298,7 +264,7 @@ block content
                                         .form-group
                                             .col-sm-12.text-cell
                                                 code.condition-jexl
-                                    .col-sm-1 &nbsp;
+                                    .col-sm-2 &nbsp;
                     .modal-footer
                         button.btn.btn-primary.save-rule(data-dismiss="modal", style="margin-right: 20px;", type="button") Save
                         button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel

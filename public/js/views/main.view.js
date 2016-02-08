@@ -1,10 +1,10 @@
 define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
-    var LoginView = Backbone.View.extend({
+    return Backbone.View.extend({
         el: '#id-rules-wrapper',
         Model: Backbone.Model.extend({urlRoot : 'api'}),
         moment: Moment,
         initialize: function() {
-            var me = this;           
+            var me = this;
             
             window.MAIN_VIEW = me;
 
@@ -398,36 +398,49 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 template = _.template($('#templateActionFormView').html(), {model: me.AllActions[actionTemplateId] || {}});            
             
             $('#new-rule .new-rule-container .rule-action-pane').html(template);
-        },
+        },        
         init: function() {
             var me = this,
+                templateHours = _.template($('#templateHoursView').html(), {}),
+                templateMins = _.template($('#templateMinsView').html(), {}),
+                $startHour1 = $('#start-hour-1').html(templateHours),
+                $endHour1 = $('#end-hour-1').html(templateHours),
+                $startHour2 = $('#start-hour-2').html(templateHours),
+                $endMin1 = $('#end-min-1').html(templateMins),
+                $startHour3 = $('#start-hour-3').html(templateHours),
+                $endMin2 = $('#end-min-2').html(templateMins),
                 $ruleType = $('input[name="condition-type"]').val(''),
-                $selectDays = $('select[name="rule-day"]').empty(),
+                $selectDays = $('select[name="rule-day"]').html(templateHours),
                 $selectDaysCond = $('select[name="condition-day"]'),
                 $selectMinsCond = $('select[name="condition-min"]'),
-                $selectMins = $('select[name="rule-min"]').empty();
+                $selectMins = $('select[name="rule-min"]').html(templateMins),
+                updateRules = function() {
+                    $('code.condition-jexl').text(
+                        '( (time.hourOfDay > ' + $startHour1.val() + ' && time.hourOfDay < ' + $endHour1.val() + ') || '
+                        + '(time.hourOfDay > ' + $startHour2.val() + ' && time.hourOfDay < ' + $endMin1.val() + ') || '
+                        + '(time.hourOfDay > ' + $startHour3.val() + ' && time.hourOfDay < ' + $endMin2.val() + ') ) && '
+                        + 'type == ' + $ruleType.val() 
+                        + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
+                        + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());
+                };
             
             
             for ( var i = 0; i <= 23; i++ ) {
                 $selectDays.append('<option value="' + i + '">' + i + '</option>');
             }
             
+            
+            
             for ( i = 0; i <= 59; i++ ) {
                 $selectMins.append('<option value="' + i + '">' + i + '</option>');
             }
 //            type == movement && time.hourOfDay() < 20 && time.minuteOfHour() < 30
-            $('select[name="rule-day"],select[name="condition-day"],select[name="condition-min"],select[name="rule-min"]').off().on('change', function () {
-                
-                $('code.condition-jexl').text('type == ' + $ruleType.val() 
-                    + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
-                    + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());
-                
+            $('.condition-jexl-box select').off().on('change', function () {                
+                updateRules();                
             });
             
             $ruleType.on('keypress', function () {                
-                $('code.condition-jexl').text('type == ' + $ruleType.val() 
-                    + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
-                    + ' &&  time.minuteOfHour()' + $selectMinsCond.val()  + ' ' + $selectMins.val());                
+                updateRules();
             })
             
             
@@ -445,6 +458,4 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             Util.hideSpinner();
         }
     });
-
-    return LoginView;
 });

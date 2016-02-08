@@ -285,7 +285,7 @@ a {
 }
 .rules-wrapper .main-contents-container .new-window {
   padding: 50px 20px 10px;
-  min-height: 300px;
+  min-height: 200px;
 }
 .rules-wrapper .main-contents-container .new-window .new-window-box {
   display: none;
