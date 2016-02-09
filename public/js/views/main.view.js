@@ -365,7 +365,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             var me = this,
                 template = _.template($('#templateRulesView').html(), {data: rules});
 
-            me.$el.find('.new-role-container .new-window-box').fadeOut();
+            me.$el.find('.new-rule-container .new-window-box').fadeOut();
             me.AllRules = {};
 
             _.each(rules, function (model, key) {
@@ -424,7 +424,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                         '( (time.hourOfDay > ' + $startHour1.val() + ' && time.hourOfDay < ' + $endHour1.val() + ') || '
                         + '(time.hourOfDay > ' + $startHour2.val() + ' && time.hourOfDay < ' + $endMin1.val() + ') || '
                         + '(time.hourOfDay > ' + $startHour3.val() + ' && time.hourOfDay < ' + $endMin2.val() + ') ) && '
-                        + 'type == ' + $ruleType.val() 
+                        + 'type == \'' + $ruleType.val() + '\''
                         + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
                         + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());
                     
