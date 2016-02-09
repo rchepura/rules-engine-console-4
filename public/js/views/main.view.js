@@ -401,8 +401,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },        
         init: function() {
             var me = this,
-                templateHours = _.template($('#templateHoursView').html(), {}),
-                templateMins = _.template($('#templateMinsView').html(), {}),
+                templateHours = _.template($('#templateHoursView').html(), {model: {}}),
+                templateMins = _.template($('#templateMinsView').html(), {model: {}}),
                 $startHour1 = $('#start-hour-1').html(templateHours),
                 $endHour1 = $('#end-hour-1').html(templateHours),
                 $startHour2 = $('#start-hour-2').html(templateHours),
@@ -414,7 +414,12 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $selectDaysCond = $('select[name="condition-day"]'),
                 $selectMinsCond = $('select[name="condition-min"]'),
                 $selectMins = $('select[name="rule-min"]').html(templateMins),
-                updateRules = function() {
+                updateRules = function($elem) {
+                    
+                    if ( 'start-hour-1' == $elem.attr('id') && parseInt($elem.val()) > parseInt($endHour1.val()) ) {
+                        $endHour1 = $('#end-hour-1').html(_.template($('#templateHoursView').html(), {model: {start: parseInt($elem.val()) || 0}}));
+                    }
+
                     $('code.condition-jexl').text(
                         '( (time.hourOfDay > ' + $startHour1.val() + ' && time.hourOfDay < ' + $endHour1.val() + ') || '
                         + '(time.hourOfDay > ' + $startHour2.val() + ' && time.hourOfDay < ' + $endMin1.val() + ') || '
@@ -422,25 +427,28 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                         + 'type == ' + $ruleType.val() 
                         + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
                         + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());
+                    
                 };
             
             
-            for ( var i = 0; i <= 23; i++ ) {
-                $selectDays.append('<option value="' + i + '">' + i + '</option>');
-            }
+//            for ( var i = 0; i <= 23; i++ ) {
+//                $selectDays.append('<option value="' + i + '">' + i + '</option>');
+//            }
             
             
             
-            for ( i = 0; i <= 59; i++ ) {
-                $selectMins.append('<option value="' + i + '">' + i + '</option>');
-            }
+//            for ( i = 0; i <= 59; i++ ) {
+//                $selectMins.append('<option value="' + i + '">' + i + '</option>');
+//            }
 //            type == movement && time.hourOfDay() < 20 && time.minuteOfHour() < 30
-            $('.condition-jexl-box select').off().on('change', function () {                
-                updateRules();                
+
+
+            $('.condition-jexl-box').off().on('change', 'select', function () {
+                updateRules($(this));                
             });
             
-            $ruleType.on('keypress', function () {                
-                updateRules();
+            $ruleType.on('keypress', function () {
+                updateRules($(this));
             })
             
             

@@ -150,7 +150,7 @@ block content
                                 .col-sm-2 &nbsp;
 
         script#templateHoursView(type="text/template")
-            <% for ( var i = 0; i <= 23; i++ ) { %>
+            <% for ( var i = model.start || 0; i <= 23; i++ ) { %>
             option(value!="<%- i %>") <%- i %>
             <% } %>
 
