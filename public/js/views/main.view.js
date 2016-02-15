@@ -398,8 +398,47 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 template = _.template($('#templateActionFormView').html(), {model: me.AllActions[actionTemplateId] || {}});            
             
             $('#new-rule .new-rule-container .rule-action-pane').html(template);
-        },        
+        },
         init: function() {
+            var me = this,
+                templateHours = _.template($('#templateHoursView').html(), {model: {}}),
+                templateMins = _.template($('#templateMinsView').html(), {model: {}}),
+                $startHour = $('#start-hour').html(templateHours),
+                $endHour = $('#end-hour').html(templateHours),
+                $startMin = $('#start-min').html(templateMins),
+                $endMin = $('#end-min').html(templateMins),
+                $ruleType = $('input[name="condition-type"]').val(''),
+                updateRules = function($elem) {
+                    
+                    if ( 'start-hour' == $elem.attr('id') && parseInt($elem.val()) > parseInt($endHour.val()) ) {
+                        $endHour = $('#end-hour').html(_.template($('#templateHoursView').html(), {model: {start: parseInt($elem.val()) || 0}}));
+                    }
+
+                    $('code.condition-jexl').text(
+                        'type == \'' + $ruleType.val() + '\' && '
+                        + '( (time.hourOfDay > ' + $startHour.val() + ' && time.hourOfDay < ' + $endHour.val() + ') || '
+                        + '(time.hourOfDay == ' + $startHour.val() + ' && time.minuteOfHour < ' + $startMin.val() + ') || '
+                        + '(time.hourOfDay == ' + $endHour.val() + ' && time.minuteOfHour < ' + $endMin.val() + ') )');
+                    
+                };
+
+            $('.condition-jexl-box').off().on('change', 'select', function () {
+                updateRules($(this));                
+            });
+            
+            $ruleType.on('keypress', function () {
+                updateRules($(this));
+            })
+            
+            
+            me.getRules(function(rules) {
+                me.renderRules(rules);
+            });            
+            me.getActions(function(actions) {
+                me.renderActions(actions);
+            });           
+        },
+        init_old: function() {
             var me = this,
                 templateHours = _.template($('#templateHoursView').html(), {model: {}}),
                 templateMins = _.template($('#templateMinsView').html(), {model: {}}),
@@ -422,8 +461,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
 
                     $('code.condition-jexl').text(
                         '( (time.hourOfDay > ' + $startHour1.val() + ' && time.hourOfDay < ' + $endHour1.val() + ') || '
-                        + '(time.hourOfDay > ' + $startHour2.val() + ' && time.hourOfDay < ' + $endMin1.val() + ') || '
-                        + '(time.hourOfDay > ' + $startHour3.val() + ' && time.hourOfDay < ' + $endMin2.val() + ') ) && '
+                        + '(time.hourOfDay == ' + $startHour2.val() + ' && time.minuteOfHour < ' + $endMin1.val() + ') || '
+                        + '(time.hourOfDay == ' + $startHour3.val() + ' && time.minuteOfHour < ' + $endMin2.val() + ') ) && '
                         + 'type == \'' + $ruleType.val() + '\''
                         + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
                         + ' &&  time.minuteOfHour() ' + $selectMinsCond.val()  + ' ' + $selectMins.val());

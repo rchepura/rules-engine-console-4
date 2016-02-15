@@ -246,33 +246,55 @@ block content
                                     label.col-sm-2.control-label Condition Jexl
                                     .col-sm-9.condition-jexl-box
                                         .form-group
-                                            label.col-sm-4.control-label Type
-                                            .col-sm-8(style="padding: 0px;")
+                                            label.col-sm-4.control-label Hour of Day &nbsp;&nbsp; >
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#start-hour-1.form-control
+                                            label.col-sm-4.control-label && &nbsp;&nbsp; Hour of Day &nbsp;&nbsp;&nbsp;&nbsp; <
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#end-hour-1.form-control
+                                        .form-group.text-center ||
+                                        .form-group
+                                            label.col-sm-4.control-label HourOfDay &nbsp;&nbsp; ==
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#start-hour-2.form-control
+                                            label.col-sm-4.control-label && &nbsp; MinuteOfHour &nbsp;&nbsp; >
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#end-min-1.form-control
+                                        .form-group.text-center ||
+                                        .form-group
+                                            label.col-sm-4.control-label HourOfDay &nbsp;&nbsp; ==
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#start-hour-3.form-control
+                                            label.col-sm-4.control-label && &nbsp; MinuteOfHour &nbsp;&nbsp; <
+                                            .col-sm-2(style="padding: 0px;")
+                                                select#end-min-2.form-control
+                                        .form-group.text-center &&
+                                        .form-group
+                                            label.col-sm-2.control-label Type
+                                            .col-sm-10(style="padding: 0px;")
                                                 input.rule-field.form-control(type="text", name="condition-type", value="")
+                                        .form-group.text-center &&
                                         .form-group
-                                            label.col-sm-4.control-label Start Hour
-                                            .col-sm-3 &nbsp;
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#start-hour.form-control
-                                            .col-sm-3 &nbsp;
+                                            label.col-sm-5.control-label Hours of Day
+                                            .col-sm-3(style="padding: 0px;")
+                                                select.form-control(name="condition-day")
+                                                    option >
+                                                    option ==
+                                                    option <
+                                                    option !=
+                                            .col-sm-4(style="padding-right: 0px;")
+                                                select.form-control(name="rule-day")
+                                        .form-group.text-center &&
                                         .form-group
-                                            label.col-sm-4.control-label Start Min
-                                            .col-sm-3 &nbsp;
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#start-min.form-control
-                                            .col-sm-3 &nbsp;
-                                        .form-group
-                                            label.col-sm-4.control-label End Hour
-                                            .col-sm-3 &nbsp;
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#end-hour.form-control
-                                            .col-sm-3 &nbsp;
-                                        .form-group
-                                            label.col-sm-4.control-label End Min
-                                            .col-sm-3 &nbsp;
-                                            .col-sm-2(style="padding: 0px;")
-                                                select#end-min.form-control
-                                            .col-sm-3 &nbsp;
+                                            label.col-sm-5.control-label Minutes Of Hour
+                                            .col-sm-3(style="padding: 0px;")
+                                                select.form-control(name="condition-min")
+                                                    option >
+                                                    option ==
+                                                    option <
+                                                    option !=
+                                            .col-sm-4(style="padding-right: 0px;")
+                                                select.form-control(name="rule-min")
                                         .form-group
                                             .col-sm-12.text-cell
                                                 code.condition-jexl
