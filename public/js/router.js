@@ -1,5 +1,5 @@
-define(['jquery', 'backbone', 'views/login.view', 'views/main.view', "views/alert.general.view", "views/alert.confirm.view", "views/alert.error.view"],
-    function($, Backbone, LoginView, MainView, AlertGeneralView, AlertConfirmView, AlertErrorView) {
+define(['jquery', 'backbone', 'views/login.view', 'views/main.view', 'views/rule.view', 'views/action.view', 'views/device.view', "views/alert.general.view", "views/alert.confirm.view", "views/alert.error.view"],
+    function($, Backbone, LoginView, MainView, RuleView, ActionView, DeviceView, AlertGeneralView, AlertConfirmView, AlertErrorView) {
         // bind alerts
         Alerts.General = new AlertGeneralView();
         Alerts.Confirm = new AlertConfirmView();
@@ -20,6 +20,9 @@ define(['jquery', 'backbone', 'views/login.view', 'views/main.view', "views/aler
                 
                 new LoginView({eventPubSub: this.eventPubSub});
                 new MainView({eventPubSub: this.eventPubSub});
+                new RuleView({eventPubSub: this.eventPubSub});
+                new ActionView({eventPubSub: this.eventPubSub});
+                new DeviceView({eventPubSub: this.eventPubSub});
                 
                 Backbone.history.start();
             },

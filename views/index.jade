@@ -48,106 +48,143 @@ block content
         #id-rules-wrapper.rules-wrapper
 
             .main-contents-container
-                .list-container.rules-container.col-md-4
-                    h3 Rules
-                    .item-list
-                .new-window.new-rule-container.col-md-8
-                    .new-window-box
-                        form.form-horizontal(role="form",  onsubmit="return false;")
-                            .form-group
-                                label.col-sm-3.control-label Name
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#rule-ruleName.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Description
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#rule-description.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Action
-                                .col-sm-7.rule-action-pane
-                                    .action-group
-                                        label.col-sm-3.control-label Name
-                                        .col-sm-9(style="padding: 0px;")
-                                            h5#rule-action-actionTemplateName.text-field &nbsp;
-                                    .action-group
-                                        label.col-sm-3.control-label Description
-                                        .col-sm-12(style="padding: 0px;")
-                                        .col-sm-3 &nbsp;
-                                        .col-sm-9(style="padding: 0px;")
-                                            h5#rule-action-actionTemplateDescription.text-field &nbsp;
-                                    .action-group
-                                        label.col-sm-3.control-label Type
-                                        .col-sm-9(style="padding: 0px;")
-                                            h5#rule-action-type.text-field &nbsp;
-                                    .action-group
-                                        label.col-sm-3.control-label Push
-                                        .col-sm-9(style="padding: 0px;")
-                                            h5#rule-action-push.text-field true
-                                    .action-group
-                                        label.col-sm-3.control-label Payload
-                                        .col-sm-9(style="padding: 0px;")
-                                            h5#rule-action-pushPayload.text-field &nbsp;
-                                    .action-group
-                                        label.col-sm-3.control-label Hours
-                                        .col-sm-1.text-cell
-                                            h5#rule-action-expirationHour.text-field 2
-                                        label.col-sm-3.control-label Minutes
-                                        .col-sm-1.text-cell
-                                            h5#rule-action-expirationMin.text-field 24
-                                        label.col-sm-3.control-label Days
-                                        .col-sm-1.text-cell
-                                            h5#rule-action-expirationDays.text-field 5
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Condition Jexl
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#rule-conditionJexl.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                    
-                .list-container.actions-container.col-md-4
-                    h3 Actions
-                    .item-list
-                .new-window.new-action-container.col-md-8
-                    .new-window-box
-                        form.form-horizontal.clearfix(role="form", onsubmit="return false;")
-                            .form-group
-                                label.col-sm-3.control-label Name
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#action-actionTemplateName.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Description
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#action-actionTemplateDescription.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Type
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#action-type.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Push
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#action-push.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Push Payload
-                                .col-sm-7(style="padding: 0px;")
-                                    h5#action-pushPayload.text-field &nbsp;
-                                .col-sm-2 &nbsp;
-                            .form-group
-                                label.col-sm-3.control-label Expiration Hours
-                                .col-sm-1.text-cell
-                                    h5#action-expirationHour.text-field 2
-                                label.col-sm-2.control-label Minutes
-                                .col-sm-1.text-cell
-                                    h5#action-expirationMin.text-field 34
-                                label.col-sm-2.control-label Days
-                                .col-sm-1.text-cell
-                                    h5#action-expirationDays.text-field 4
-                                .col-sm-2 &nbsp;
+                #id-rules-container
+                    .list-container.rules-container.col-md-4
+                        h3 Rules
+                        .item-list
+                    .new-window.new-rule-container.col-md-8
+                        .new-window-box
+                            form.form-horizontal(role="form",  onsubmit="return false;")
+                                .form-group
+                                    label.col-sm-3.control-label Name
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#rule-ruleName.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Description
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#rule-description.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Action
+                                    .col-sm-7.rule-action-pane
+                                        .action-group
+                                            label.col-sm-3.control-label Name
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#rule-action-actionTemplateName.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Description
+                                            .col-sm-12(style="padding: 0px;")
+                                            .col-sm-3 &nbsp;
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#rule-action-actionTemplateDescription.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Type
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#rule-action-type.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Push
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#rule-action-push.text-field true
+                                        .action-group
+                                            label.col-sm-3.control-label Payload
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#rule-action-pushPayload.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Hours
+                                            .col-sm-1.text-cell
+                                                h5#rule-action-expirationHour.text-field 2
+                                            label.col-sm-3.control-label Minutes
+                                            .col-sm-1.text-cell
+                                                h5#rule-action-expirationMin.text-field 24
+                                            label.col-sm-3.control-label Days
+                                            .col-sm-1.text-cell
+                                                h5#rule-action-expirationDays.text-field 5
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Condition Jexl
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#rule-conditionJexl.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                #id-actions-container
+                    .list-container.actions-container.col-md-4
+                        h3 Actions
+                        .item-list
+                    .new-window.new-action-container.col-md-8
+                        .new-window-box
+                            form.form-horizontal.clearfix(role="form", onsubmit="return false;")
+                                .form-group
+                                    label.col-sm-3.control-label Name
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#action-actionTemplateName.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Description
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#action-actionTemplateDescription.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Type
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#action-type.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Push
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#action-push.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Push Payload
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#action-pushPayload.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Expiration Hours
+                                    .col-sm-1.text-cell
+                                        h5#action-expirationHour.text-field 2
+                                    label.col-sm-2.control-label Minutes
+                                    .col-sm-1.text-cell
+                                        h5#action-expirationMin.text-field 34
+                                    label.col-sm-2.control-label Days
+                                    .col-sm-1.text-cell
+                                        h5#action-expirationDays.text-field 4
+                                    .col-sm-2 &nbsp;
+                #id-devices-container
+                    .list-container.devices-container.col-md-4
+                        h3 Device Types
+                        .item-list
+                    .new-window.new-device-container.col-md-8
+                        .new-window-box
+                            form.form-horizontal.clearfix(role="form", onsubmit="return false;")
+                                .form-group
+                                    label.col-sm-3.control-label Name
+                                    .col-sm-7(style="padding: 0px;")
+                                        input#device-name.form-control(type="text", name="name", value="")
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Capability:
+                                    .col-sm-9 &nbsp;
+                                .form-group
+                                    .col-sm-1 &nbsp;
+                                    label.col-sm-3.control-label Storage
+                                    .col-sm-5(style="margin-bottom: 10px;")
+                                        select#device-Storage.form-control(name="Storage")
+                                            option(value="YES") YES
+                                            option(value="NO") NO
+                                    .col-sm-3 &nbsp;
+                                .form-group
+                                    .col-sm-1 &nbsp;
+                                    label.col-sm-3.control-label Recording
+                                    .col-sm-5
+                                        select#device-Recording.form-control(name="Recording")
+                                            option(value="YES") YES
+                                            option(value="NO") NO
+                                    .col-sm-3 &nbsp;
+                                .form-group
+                                    .col-sm-9 &nbsp;
+                                    .col-sm-2.text-center &nbsp;
+                                        button.btn.btn-primary.update-device(data-dismiss="modal", style="margin-top: 40px;", type="button") Save
+                                    .col-sm-1 &nbsp;
 
         script#templateHoursView(type="text/template")
             <% for ( var i = model.start || 0; i <= 23; i++ ) { %>
@@ -217,6 +254,16 @@ block content
                     label.col-sm-2.control-label(for="expirationDays") Days
                     .col-sm-2(style="padding: 0px;")
                         input.form-control(type="text", name="expirationDays", value!="<%- model.expirationDays %>")
+
+        script#templateDevicesView(type="text/template")
+            <% _.each(data, function(model, key) { %>
+            .row.list-row(did!="<%- model.name %>")
+                span.glyphicon.glyphicon-ok
+                | <%- model.name %>
+            <% }); %>
+            .row.list-row-btns
+                button.btn.btn-primary.add-device(data-dismiss="modal", type="button") +
+                button.btn.btn-danger.remove-device(data-dismiss="modal", type="button", disabled="disabled") -
             
         #new-rule.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
             .modal-dialog
@@ -330,6 +377,43 @@ block content
                                         .col-sm-2 &nbsp;
                     .modal-footer
                         button.btn.btn-primary.save-action(data-dismiss="modal", style="margin-right: 20px;", type="button") Save
+                        button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
+
+        #new-device.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
+            .modal-dialog
+                .modal-content.new-device-container
+                    .modal-header
+                        h4
+                    .modal-body.clearfix
+                        .create-window.new-device-container
+                            .new-window-box
+                                form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
+                                    .form-group
+                                        label.col-sm-3.control-label(for="name") Name
+                                        .col-sm-7(style="padding: 0px;")
+                                            input.form-control(type="text", name="name", value="")
+                                        .col-sm-2 &nbsp;
+                                    .form-group
+                                        label.col-sm-3.control-label Capability:
+                                        .col-sm-9 &nbsp;
+                                    .form-group
+                                        .col-sm-1 &nbsp;
+                                        label.col-sm-3.control-label(for="Storage") Storage
+                                        .col-sm-5(style="padding: 0px;")
+                                            select.form-control(name="Storage")
+                                                option(value="YES") YES
+                                                option(value="NO") NO
+                                        .col-sm-3 &nbsp;
+                                    .form-group
+                                        .col-sm-1 &nbsp;
+                                        label.col-sm-3.control-label(for="Recording") Recording
+                                        .col-sm-5(style="padding: 0px;")
+                                            select.form-control(name="Recording")
+                                                option(value="YES") YES
+                                                option(value="NO") NO
+                                        .col-sm-3 &nbsp;
+                    .modal-footer
+                        button.btn.btn-primary.save-device(data-dismiss="modal", style="margin-right: 20px;", type="button") Save
                         button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
 
         #confirm-alert.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
