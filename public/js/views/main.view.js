@@ -89,8 +89,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         onAddRule: function(e) {
             var me = this;
             
+            me.buildJexl();
             $('#new-rule').modal('show');
-//            me.$el.find('.new-rule-container .new-window-box').fadeIn();
         },
         addRule: function(text) {
             var me = this,
@@ -399,7 +399,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             
             $('#new-rule .new-rule-container .rule-action-pane').html(template);
         },
-        init: function() {
+        buildJexl: function() {
             var me = this,
                 templateHours = _.template($('#templateHoursView').html(), {model: {}}),
                 templateMins = _.template($('#templateMinsView').html(), {model: {}}),
@@ -409,27 +409,44 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $endMin = $('#end-min').html(templateMins),
                 $ruleType = $('input[name="condition-type"]').val(''),
                 updateRules = function($elem) {
+                    var currDateStart = 0,
+                        endDate = parseInt($endHour.val() || 0);
                     
-                    if ( 'start-hour' == $elem.attr('id') && parseInt($elem.val()) > parseInt($endHour.val()) ) {
-                        $endHour = $('#end-hour').html(_.template($('#templateHoursView').html(), {model: {start: parseInt($elem.val()) || 0}}));
+                    if ( 'start-hour' == $elem.attr('id') ) {
+                        currDateStart = parseInt($elem.val());
+                        $endHour.html(_.template($('#templateHoursView').html(), {model: {start: currDateStart || 0}}));
+                        if ( currDateStart > endDate ) {
+                            endDate = currDateStart;
+                        }
+                        $endHour.find('option').each(function(i, el) {
+                            if ( endDate == parseInt($(this).val()) ) {
+                                el.parentElement.selectedIndex = i;
+                            }
+                        });
                     }
 
                     $('code.condition-jexl').text(
                         'type == \'' + $ruleType.val() + '\' && '
                         + '( (time.hourOfDay > ' + $startHour.val() + ' && time.hourOfDay < ' + $endHour.val() + ') || '
-                        + '(time.hourOfDay == ' + $startHour.val() + ' && time.minuteOfHour < ' + $startMin.val() + ') || '
+                        + '(time.hourOfDay == ' + $startHour.val() + ' && time.minuteOfHour > ' + $startMin.val() + ') || '
                         + '(time.hourOfDay == ' + $endHour.val() + ' && time.minuteOfHour < ' + $endMin.val() + ') )');
                     
                 };
+
+            $('code.condition-jexl').text('');
 
             $('.condition-jexl-box').off().on('change', 'select', function () {
                 updateRules($(this));                
             });
             
-            $ruleType.on('keypress', function () {
+            $ruleType.off().on('keyup', function () {
                 updateRules($(this));
-            })
+            });            
+        },
+        init: function() {
+            var me = this;
             
+            me.buildJexl();
             
             me.getRules(function(rules) {
                 me.renderRules(rules);
@@ -461,7 +478,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
 
                     $('code.condition-jexl').text(
                         '( (time.hourOfDay > ' + $startHour1.val() + ' && time.hourOfDay < ' + $endHour1.val() + ') || '
-                        + '(time.hourOfDay == ' + $startHour2.val() + ' && time.minuteOfHour < ' + $endMin1.val() + ') || '
+                        + '(time.hourOfDay == ' + $startHour2.val() + ' && time.minuteOfHour > ' + $endMin1.val() + ') || '
                         + '(time.hourOfDay == ' + $startHour3.val() + ' && time.minuteOfHour < ' + $endMin2.val() + ') ) && '
                         + 'type == \'' + $ruleType.val() + '\''
                         + ' && time.hourOfDay() ' + $selectDaysCond.val() + ' ' + $selectDays.val() 
