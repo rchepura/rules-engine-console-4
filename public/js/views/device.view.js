@@ -136,7 +136,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 
                     $parent.find('.capability-keys .form-group').each(function() {
                         var cKey = $.trim($(this).find('input[name="capability-key"]').val()),
-                            cVal = $(this).find('select').val();
+                            cVal = $.trim($(this).find('input[name="capability-value"]').val());
                         if ( cKey  ) {
                             data.capability[cKey] = cVal;
                         }
