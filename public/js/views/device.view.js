@@ -25,8 +25,9 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             var me = this,
                 $elem = $(e.currentTarget),
                 $elParent = $elem.parent(),
+                $cKeys = me.$el.find('.new-device-container .capability-keys').empty(),
                 itemId = $elem.attr('did'),
-                cData = {};
+                cData = {}, cCaps;
             
             if ( !$elem.hasClass('active') ) {
                 $elParent.find('.list-row.active').removeClass('active');
@@ -35,9 +36,18 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 if ( me.AllDevices[itemId] ) {
                     me.$el.find('.new-device-container .new-window-box').fadeIn();
                     cData = me.AllDevices[itemId];
+                    cCaps = cData.capability || {};
+                    
                     $('#device-name').text(cData.name);
-                    $('#device-Storage').text((cData.capability || {}).Storage || 'N/A');
-                    $('#device-Recording').text((cData.capability || {}).Recording || 'N/A');
+                    
+                    for ( var c in cCaps ) {
+                        console.log(cCaps[c]);
+                        $cKeys.append(_.template($('#templateCapabilityKeysView').html(), {model: {key: c, value: cCaps[c]} }));
+                    }
+                    
+//                    $('#device-name').text(cData.name);
+//                    $('#device-Storage').text((cData.capability || {}).Storage || 'N/A');
+//                    $('#device-Recording').text((cData.capability || {}).Recording || 'N/A');
 //                    $('#device-Storage').get(0).selectedIndex = 0;
 //                    $('#device-Recording').get(0).selectedIndex = 0;
 //                    if ( 'NO' == (cData.capability || {}).Storage ) {
@@ -58,8 +68,16 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             }
         },
         onAddDevice: function(e) {
-            var me = this;
+            var me = this,
+                modalNewDevice = $('#new-device'),
+                keysBox = modalNewDevice.find('.capability-keys').empty();
 
+            keysBox.off().on('click', '.remove-capability', function() {
+                $(this).closest('.form-group').remove();
+            });
+            modalNewDevice.find('.add-capability').off().on('click', function() {
+                keysBox.append(_.template($('#templateCapabilityKeyView').html(), {}));
+            });
             $('#new-device').modal('show');
         },
         getDevices: function(cb) {
@@ -108,21 +126,30 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 },
                 loc = 'api/dtcontroller/device/type';
                 
-                
                 if ( updateDeviceType ) {
                     loc += '/' + updateDeviceType;
                     data.name = updateDeviceType;
                 } else {
                     data.id = 1;
                     data.name = $.trim($parent.find('input[name="name"]').val());
+                    data.capability = {};
+                
+                    $parent.find('.capability-keys .form-group').each(function() {
+                        var cKey = $.trim($(this).find('input[name="capability-key"]').val()),
+                            cVal = $(this).find('select').val();
+                        if ( cKey  ) {
+                            data.capability[cKey] = cVal;
+                        }
+                    });
+                    
                 
                     if ( !data.name ) {
                         Alerts.Error.display({title: 'Error', content: "Device name cannot be empty"});
-                        return;
+                        return false;
                     }
                 }
                 
-                top.DEVICESSDATA = data;
+//                top.DEVICESSDATA = data; return;
                 
             me.showLoader();
             
@@ -136,6 +163,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                             me.renderDevices(devices);
                         });
                         me.$el.find('.new-device-container .new-window-box').fadeOut();
+                        $('#new-device').modal('hide');
                     } else {
                         Alerts.Error.display({title: 'Error', content: 'Failed during save Davice Type (' + res + ')'});
                     }

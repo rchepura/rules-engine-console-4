@@ -175,36 +175,45 @@ block content
                                 .form-group
                                     label.col-sm-3.control-label Capability:
                                     .col-sm-9 &nbsp;
-                                .form-group
-                                    .col-sm-1 &nbsp;
-                                    label.col-sm-3.control-label Storage
-                                    .col-sm-5(style="margin-bottom: 10px;")
-                                        h5#device-Storage.text-field &nbsp;
-                                        //select#device-Storage.form-control(name="Storage")
-                                            option(value="YES") YES
-                                            option(value="NO") NO
-                                    .col-sm-3 &nbsp;
-                                .form-group
-                                    .col-sm-1 &nbsp;
-                                    label.col-sm-3.control-label Recording
-                                    .col-sm-5
-                                        h5#device-Recording.text-field &nbsp;
-                                        //select#device-Recording.form-control(name="Recording")
-                                            option(value="YES") YES
-                                            option(value="NO") NO
-                                    .col-sm-3 &nbsp;
-                                //.form-group
-                                    .col-sm-9 &nbsp;
-                                    .col-sm-2.text-center &nbsp;
-                                        button.btn.btn-primary.update-device(style="margin-top: 40px;", type="button") Save
-                                    .col-sm-1 &nbsp;
+                                .capability-keys
+                                    .form-group
+                                        .col-sm-1 &nbsp;
+                                        label.col-sm-3.control-label Storage
+                                        .col-sm-5(style="margin-bottom: 10px;")
+                                            h5#device-Storage.text-field &nbsp;
+                                            //select#device-Storage.form-control(name="Storage")
+                                                option(value="YES") YES
+                                                option(value="NO") NO
+                                        .col-sm-3 &nbsp;
+                                    .form-group
+                                        .col-sm-1 &nbsp;
+                                        label.col-sm-3.control-label Recording
+                                        .col-sm-5
+                                            h5#device-Recording.text-field &nbsp;
+                                            //select#device-Recording.form-control(name="Recording")
+                                                option(value="YES") YES
+                                                option(value="NO") NO
+                                        .col-sm-3 &nbsp;
+                                    //.form-group
+                                        .col-sm-9 &nbsp;
+                                        .col-sm-2.text-center &nbsp;
+                                            button.btn.btn-primary.update-device(style="margin-top: 40px;", type="button") Save
+                                        .col-sm-1 &nbsp;
+
+        script#templateCapabilityKeysView(type="text/template")
+            .form-group
+                .col-sm-1 &nbsp;
+                label.col-sm-3.control-label <%- model.key %>
+                .col-sm-5(style="margin-bottom: 10px;")
+                    h5.text-field <%- model.value %>
+                .col-sm-3 &nbsp;
 
         script#templateHoursView(type="text/template")
             <% for ( var i = model.start || 0; i <= 23; i++ ) { %>
             option(value!="<%- i %>") <%- i %>
             <% } %>
 
-        script#templateMinsView(type="text/template")
+        script#templateMinsView(type="text/template")            
             <% for ( var i = 0; i <= 59; i++ ) { %>
             option(value!="<%- i %>") <%- i %>
             <% } %>
@@ -226,8 +235,8 @@ block content
                 | <%- model.actionTemplateName %>            
             <% }); %>
             .row.list-row-btns
-                button.btn.btn-primary.add-action(data-dismiss="modal", type="button") +
-                button.btn.btn-danger.remove-action(data-dismiss="modal", type="button", disabled="disabled") -
+                button.btn.btn-primary.add-action(type="button") +
+                button.btn.btn-danger.remove-action(type="button", disabled="disabled") -
 
         script#templateActionFormView(type="text/template")
             form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
@@ -296,6 +305,18 @@ block content
                     label.col-sm-3.control-label(for="Recording") Recording
                     .col-sm-8(style="padding: 0px;")
                         input.form-control(type="text", readonly="readonly", name="device-Recording", value!="<%- (model.capability || {}).Recording || 'N/A' %>")
+
+        script#templateCapabilityKeyView(type="text/template")
+            .form-group
+                .col-sm-3 &nbsp;
+                .col-sm-4
+                    input.form-control(type="text", name="capability-key", value="")
+                .col-sm-3
+                    select.form-control
+                        option(value="YES") YES
+                        option(value="NO") NO
+                .col-sm-2
+                    button.btn.btn-danger.remove-capability(type="button") -
             
         #new-rule.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
             .modal-dialog
@@ -425,30 +446,20 @@ block content
                                 form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
                                     .form-group
                                         label.col-sm-3.control-label(for="name") Name
-                                        .col-sm-7(style="padding: 0px;")
+                                        .col-sm-7
                                             input.form-control(type="text", name="name", value="")
                                         .col-sm-2 &nbsp;
                                     .form-group
                                         label.col-sm-3.control-label Capability:
                                         .col-sm-9 &nbsp;
+                                    .capability-keys
                                     .form-group
-                                        .col-sm-1 &nbsp;
-                                        label.col-sm-3.control-label(for="Storage") Storage
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="Storage")
-                                                option(value="YES") YES
-                                                option(value="NO") NO
                                         .col-sm-3 &nbsp;
-                                    .form-group
-                                        .col-sm-1 &nbsp;
-                                        label.col-sm-3.control-label(for="Recording") Recording
-                                        .col-sm-5(style="padding: 0px;")
-                                            select.form-control(name="Recording")
-                                                option(value="YES") YES
-                                                option(value="NO") NO
-                                        .col-sm-3 &nbsp;
+                                        .col-sm-7
+                                            button.btn.btn-primary.add-capability(type="button") +
+                                        .col-sm-2 &nbsp;
                     .modal-footer
-                        button.btn.btn-primary.save-device(data-dismiss="modal", style="margin-right: 20px;", type="button") Save
+                        button.btn.btn-primary.save-device(style="margin-right: 20px;", type="button") Save
                         button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
 
         #confirm-alert.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
