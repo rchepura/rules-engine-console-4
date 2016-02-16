@@ -25,7 +25,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $elem = $(e.currentTarget),
                 $elParent = $elem.parent(),
                 itemId = $elem.attr('did'),
-                cData = {};
+                cData = {},
+                devType = {};
             
             if ( !$elem.hasClass('active') ) {
                 $elParent.find('.list-row.active').removeClass('active');
@@ -34,9 +35,13 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 if ( me.AllActions[itemId] ) {
                     me.$el.find('.new-action-container .new-window-box').fadeIn();
                     cData = me.AllActions[itemId];
+                    devType = cData.deviceType || {};
                     for ( var d in cData ) {
                         $('#action-' + d).text(cData[d]);
                     }
+                    $('#device-type-name').text(devType.name || 'N/A');
+                    $('#device-type-Storage').text((devType.capability || {}).Storage || 'N/A');
+                    $('#device-type-Recording').text((devType.capability || {}).Recording || 'N/A');
                 }
                 
             } else {
@@ -85,27 +90,41 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             $('#new-action').modal('show');
 //            me.$el.find('.new-action-container .new-window-box').fadeIn();
         },
-        saveAction: function(e) {
+        saveAction: function(e, actionID) {
             var me = this,
                 $elem = $(e.currentTarget),
-                $inputFields = $elem.closest('.modal-content').find('input'),
+                $parent = $elem.closest('.modal-content'),
+                $inputFields = $parent.find('input'),
                 model = new me.Model(),
                 data = {};
                 
                 $inputFields.each(function() {
                     var $this = $(this);
                     
-                    if ( 'checkbox' == $this.attr('type') ) {
-                        data[$this.attr('name')] = $this.get(0).checked;
-                    } else {
-                        data[$this.attr('name')] = $.trim($this.val());
-                    }                    
+                    if ( -1 == $this.attr('name').indexOf('device') ) {
+                        if ( 'checkbox' == $this.attr('type') ) {
+                            data[$this.attr('name')] = $this.get(0).checked;
+                        } else {
+                            data[$this.attr('name')] = $.trim($this.val());
+                        }
+                    }
                 });
+                
+                data.deviceType = {
+                    name: $parent.find('input[name="device-name"]').val(),
+                    capability: {
+                        Storage: $parent.find('input[name="device-Storage"]').val(),
+                        Recording: $parent.find('input[name="device-Recording"]').val()
+                    }
+                };
+                
+                if ( !actionID ) {
+                    data.id = 1;
+                }
                 
                 data.timeCreated = (new Date()).getTime();
                 
                 top.NEW_ACTION_DATA = data;
-                
                 
                 if ( !data.actionTemplateName ) {
                     Alerts.Error.display({title: 'Error', content: "Rule Action Name cannot be empty"});
@@ -125,12 +144,12 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                             });
                             me.$el.find('.new-action-container .new-window-box').fadeOut();
                         } else {
-                            Alerts.Error.display({title: 'Error', content: "Failed during create Actin"});
+                            Alerts.Error.display({title: 'Error', content: "Failed during create Action"});
                         }
                     }
                 },
                 error: function () {
-                    Alerts.Error.display({title: 'Error', content: "Failed during generate report"});
+                    Alerts.Error.display({title: 'Error', content: "Failed during create Action"});
                     me.hideLoader();
                 }
             });

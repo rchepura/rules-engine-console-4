@@ -162,7 +162,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     }
                 },
                 error: function () {
-                    Alerts.Error.display({title: 'Error', content: "Failed during generate report"});
+                    Alerts.Error.display({title: 'Error', content: "Failed during create Rule"});
                     me.hideLoader();
                 }
             });

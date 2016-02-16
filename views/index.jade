@@ -124,9 +124,20 @@ block content
                                         h5#action-actionTemplateDescription.text-field &nbsp;
                                     .col-sm-2 &nbsp;
                                 .form-group
-                                    label.col-sm-3.control-label Type
-                                    .col-sm-7(style="padding: 0px;")
-                                        h5#action-type.text-field &nbsp;
+                                    label.col-sm-3.control-label Device Type
+                                    .col-sm-7.action-device-type-pane
+                                        .action-group
+                                            label.col-sm-3.control-label Name
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#device-type-name.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Storage
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#device-type-Storage.text-field &nbsp;
+                                        .action-group
+                                            label.col-sm-3.control-label Recording
+                                            .col-sm-9(style="padding: 0px;")
+                                                h5#device-type-Recording.text-field &nbsp;
                                     .col-sm-2 &nbsp;
                                 .form-group
                                     label.col-sm-3.control-label Push
@@ -159,7 +170,7 @@ block content
                                 .form-group
                                     label.col-sm-3.control-label Name
                                     .col-sm-7(style="padding: 0px;")
-                                        input#device-name.form-control(type="text", name="name", value="")
+                                        h5#device-name.text-field &nbsp;
                                     .col-sm-2 &nbsp;
                                 .form-group
                                     label.col-sm-3.control-label Capability:
@@ -168,7 +179,8 @@ block content
                                     .col-sm-1 &nbsp;
                                     label.col-sm-3.control-label Storage
                                     .col-sm-5(style="margin-bottom: 10px;")
-                                        select#device-Storage.form-control(name="Storage")
+                                        h5#device-Storage.text-field &nbsp;
+                                        //select#device-Storage.form-control(name="Storage")
                                             option(value="YES") YES
                                             option(value="NO") NO
                                     .col-sm-3 &nbsp;
@@ -176,14 +188,15 @@ block content
                                     .col-sm-1 &nbsp;
                                     label.col-sm-3.control-label Recording
                                     .col-sm-5
-                                        select#device-Recording.form-control(name="Recording")
+                                        h5#device-Recording.text-field &nbsp;
+                                        //select#device-Recording.form-control(name="Recording")
                                             option(value="YES") YES
                                             option(value="NO") NO
                                     .col-sm-3 &nbsp;
-                                .form-group
+                                //.form-group
                                     .col-sm-9 &nbsp;
                                     .col-sm-2.text-center &nbsp;
-                                        button.btn.btn-primary.update-device(data-dismiss="modal", style="margin-top: 40px;", type="button") Save
+                                        button.btn.btn-primary.update-device(style="margin-top: 40px;", type="button") Save
                                     .col-sm-1 &nbsp;
 
         script#templateHoursView(type="text/template")
@@ -221,39 +234,39 @@ block content
                 .form-group
                     label.col-sm-3.control-label(for="actionTemplateName") Name
                     .col-sm-9(style="padding: 0px;")
-                        input.form-control(type="text", name="actionTemplateName", value!="<%- model.actionTemplateName %>")
+                        input.form-control(type="text", readonly="readonly", name="actionTemplateName", value!="<%- model.actionTemplateName %>")
                 .form-group
                     label.col-sm-3.control-label(for="actionTemplateDescription") Description
                     .col-sm-9(style="padding: 0px;")
-                        input.form-control(type="text", name="actionTemplateDescription", value!="<%- model.actionTemplateDescription %>")
+                        input.form-control(type="text", readonly="readonly", name="actionTemplateDescription", value!="<%- model.actionTemplateDescription %>")
                 .form-group
                     label.col-sm-3.control-label(for="type") Type
                     .col-sm-9(style="padding: 0px;")
-                        input.form-control(type="text", name="type", value!="<%- model.type %>")
+                        input.form-control(type="text", readonly="readonly", name="type", value!="<%- model.type %>")
                 .form-group
                     .col-sm-offset-3.col-sm-9
                         .checkbox
                             label
                                 <% if ( model.push ) { %>
-                                input(type="checkbox", name="push", checked="checked")
+                                input(type="checkbox", disabled="disabled", name="push", checked="checked")
                                 <% } else { %>
-                                input(type="checkbox", name="push")
+                                input(type="checkbox", disabled="disabled", name="push")
                                 <% } %>
                                 | Push
                 .form-group
                     label.col-sm-3.control-label(for="pushPayload") Payload
                     .col-sm-9(style="padding: 0px;")
-                        input.form-control(type="text", name="pushPayload", value!="<%- model.actionTemplateDescription %>")
+                        input.form-control(type="text", readonly="readonly", name="pushPayload", value!="<%- model.actionTemplateDescription %>")
                 .form-group
                     label.col-sm-2.control-label(for="expirationHour") Hours
                     .col-sm-2(style="padding: 0px;")
-                        input.form-control(type="text", name="expirationHour", value!="<%- model.expirationHour %>")
+                        input.form-control(type="text", readonly="readonly", name="expirationHour", value!="<%- model.expirationHour %>")
                     label.col-sm-2.control-label(for="expirationMin") Mins
                     .col-sm-2(style="padding: 0px;")
-                        input.form-control(type="text", name="expirationMin", value!="<%- model.expirationMin %>")
+                        input.form-control(type="text", readonly="readonly", name="expirationMin", value!="<%- model.expirationMin %>")
                     label.col-sm-2.control-label(for="expirationDays") Days
                     .col-sm-2(style="padding: 0px;")
-                        input.form-control(type="text", name="expirationDays", value!="<%- model.expirationDays %>")
+                        input.form-control(type="text", readonly="readonly", name="expirationDays", value!="<%- model.expirationDays %>")
 
         script#templateDevicesView(type="text/template")
             <% _.each(data, function(model, key) { %>
@@ -264,6 +277,25 @@ block content
             .row.list-row-btns
                 button.btn.btn-primary.add-device(data-dismiss="modal", type="button") +
                 button.btn.btn-danger.remove-device(data-dismiss="modal", type="button", disabled="disabled") -
+
+        script#templateActionDeviceTypeFormView(type="text/template")
+            form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
+                .form-group
+                    label.col-sm-3.control-label(for="name") Name
+                    .col-sm-9(style="padding: 0px;")
+                        input.form-control(type="text", readonly="readonly", name="device-name", value!="<%- model.name %>")
+                .form-group
+                    label.col-sm-3.control-label Capability
+                .form-group
+                    .col-sm-1 &nbsp;
+                    label.col-sm-3.control-label(for="Storage") Storage
+                    .col-sm-8(style="padding: 0px;")
+                        input.form-control(type="text", readonly="readonly", name="device-Storage", value!="<%- (model.capability || {}).Storage || 'N/A' %>")
+                .form-group
+                    .col-sm-1 &nbsp;
+                    label.col-sm-3.control-label(for="Recording") Recording
+                    .col-sm-8(style="padding: 0px;")
+                        input.form-control(type="text", readonly="readonly", name="device-Recording", value!="<%- (model.capability || {}).Recording || 'N/A' %>")
             
         #new-rule.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
             .modal-dialog
@@ -334,7 +366,7 @@ block content
                     .modal-header
                         h4
                     .modal-body.clearfix
-                        .create-window.new-rule-container
+                        .create-window.new-action-container
                             .new-window-box
                                 form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
                                     .form-group
@@ -348,9 +380,12 @@ block content
                                             input.form-control(type="text", name="actionTemplateDescription", value="")
                                         .col-sm-2 &nbsp;
                                     .form-group
-                                        label.col-sm-3.control-label(for="type") Type
+                                        label.col-sm-3.control-label(for="deviceType") Device Type
                                         .col-sm-7(style="padding: 0px;")
-                                            input.form-control(type="text", name="type", value="")
+                                            select.form-control(name="deviceType")
+                                        .col-sm-2 &nbsp;
+                                        .col-sm-3 &nbsp;
+                                        .col-sm-7.action-device-type-pane
                                         .col-sm-2 &nbsp;
                                     .form-group
                                         .col-sm-offset-3.col-sm-7

@@ -35,13 +35,17 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 if ( me.AllDevices[itemId] ) {
                     me.$el.find('.new-device-container .new-window-box').fadeIn();
                     cData = me.AllDevices[itemId];
-                    $('#device-name').val(cData.name);
-                    if ( 'NO' == (cData.capability || {}).Storage ) {
-                        $('#device-Storage').get(0).selectedIndex = 1;
-                    }
-                    if ( 'NO' == (cData.capability || {}).Recording ) {
-                        $('#device-Recording').get(0).selectedIndex = 1;
-                    }
+                    $('#device-name').text(cData.name);
+                    $('#device-Storage').text((cData.capability || {}).Storage || 'N/A');
+                    $('#device-Recording').text((cData.capability || {}).Recording || 'N/A');
+//                    $('#device-Storage').get(0).selectedIndex = 0;
+//                    $('#device-Recording').get(0).selectedIndex = 0;
+//                    if ( 'NO' == (cData.capability || {}).Storage ) {
+//                        $('#device-Storage').get(0).selectedIndex = 1;
+//                    }
+//                    if ( 'NO' == (cData.capability || {}).Recording ) {
+//                        $('#device-Recording').get(0).selectedIndex = 1;
+//                    }
                 }
                 
             } else {
@@ -91,13 +95,12 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 }
             });
         },
-        saveDevice: function(e, update) {
+        saveDevice: function(e, updateDeviceType) {
             var me = this,
                 $elem = $(e.currentTarget),
                 $parent = $elem.closest('.new-device-container'),
                 model = new me.Model(),
-                data = {
-                    name: $.trim($parent.find('input[name="name"]').val()), 
+                data = {                    
                     capability: {
                         Storage: $parent.find('select[name="Storage"]').val(),
                         Recording: $parent.find('select[name="Recording"]').val()
@@ -106,18 +109,20 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 loc = 'api/dtcontroller/device/type';
                 
                 
-                if ( !update ) {
-                    data.id = 1;
+                if ( updateDeviceType ) {
+                    loc += '/' + updateDeviceType;
+                    data.name = updateDeviceType;
                 } else {
-                    loc += '/' + data.name;
+                    data.id = 1;
+                    data.name = $.trim($parent.find('input[name="name"]').val());
+                
+                    if ( !data.name ) {
+                        Alerts.Error.display({title: 'Error', content: "Device name cannot be empty"});
+                        return;
+                    }
                 }
                 
                 top.DEVICESSDATA = data;
-                
-                if ( !data.name ) {
-                    Alerts.Error.display({title: 'Error', content: "Device name cannot be empty"});
-                    return;
-                }
                 
             me.showLoader();
             
@@ -132,19 +137,22 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                         });
                         me.$el.find('.new-device-container .new-window-box').fadeOut();
                     } else {
-                        Alerts.Error.display({title: 'Error', content: "Failed during create Rule"});
+                        Alerts.Error.display({title: 'Error', content: 'Failed during save Davice Type (' + res + ')'});
                     }
                 },
                 error: function () {
-                    Alerts.Error.display({title: 'Error', content: "Failed during generate report"});
+                    Alerts.Error.display({title: 'Error', content: "Failed during save Davice Type"});
                     me.hideLoader();
                 }
             });
             return false;
         },
         onUpdateDevice: function(e) {
-            var me = this;
-            me.saveDevice(e, true);
+            var me = this,
+                $elem = $(e.currentTarget),
+                $parent = $elem.closest('.new-device-container');
+            
+            me.saveDevice(e, $parent.find('h5#device-name').text());
         },
         removeDevice: function(e) {
             var me = this,            
@@ -175,16 +183,28 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         renderDevices: function(devices) {
             var me = this,
-                template = _.template($('#templateDevicesView').html(), {data: devices});
+                template = _.template($('#templateDevicesView').html(), {data: devices}),
+                $deviceSelect = $('#new-action .new-action-container select[name="deviceType"]').empty();
 
             me.$el.find('.new-device-container .new-window-box').fadeOut();
             me.AllDevices = {};
 
             _.each(devices, function (model, key) {
                 me.AllDevices[model.name] = model;
+                $deviceSelect.append('<option value="' + model.name + '">' + model.name + '</option>');
             });
             
             me.$el.find('.devices-container .item-list').html(template);
+            $deviceSelect.on('change', function() {
+                me.renderNewActionDeviceTypes($(this).val());
+            });
+            me.renderNewActionDeviceTypes($deviceSelect.val());
+        },
+        renderNewActionDeviceTypes: function(deviceType) {
+            var me = this,                
+                template = _.template($('#templateActionDeviceTypeFormView').html(), {model: me.AllDevices[deviceType] || {}});            
+            
+            $('#new-action .new-action-container .action-device-type-pane').html(template);
         },
         init: function() {
             var me = this;
