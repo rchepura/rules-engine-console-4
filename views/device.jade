@@ -1,0 +1,205 @@
+extends layout
+
+head
+    title= title
+
+block content
+
+    body
+        #center_spinner(style="position:fixed; top:50%; left:50%")
+        
+
+        .rules-header
+            .col-xs-2
+                img(src="images/assets/cellstice-sm.png")
+            .col-xs-8
+                .title-1 Device Management Console
+            .col-xs-2
+                //a#id-rules-signout.title-1(href="#/logout") Sign out
+
+        #id-device-wrapper.rules-wrapper
+
+            .main-contents-container
+                .main-content
+                    .row.tab-buttons
+                        .col-xs-3
+                            button#id-new-feedback.btn.btn-default(type="button") + New
+                        .col-xs-6
+                            form(onsubmit="return false;")
+                                .col-xs-8.row-field(style="padding: 0;")
+                                    span.icon-search
+                                    input#id-search-feedback.form-control(type="text", name="modal-search-users", value="", placeholder="Search by Device name")
+                                    span.icon-search-reset x
+                                .col-xs-4.row-label
+                                    button#id-search-feedback-btn-search.btn.btn-default(type="submit") Search
+                        .col-xs-3 &nbsp;
+                    .row.tab-header-row
+                        .col-xs-2 Date Added
+                        .col-xs-10 Device Name
+                    .row.tab-new-row
+                    .content-feedback-list
+                        .row.tab-row
+                            .col-xs-2.exp-col 02/17/2016
+                            .col-xs-9.exp-col
+                                input.js-select-edit-feedback-title.input-in-header.form-control(type="text", value="light")
+                            .col-xs-1.exp-col.tab-row-collaps.text-right
+                                span.arrow-expand
+                            .row.tab-box.col-xs-12
+
+                #id-devices-container.col-xs-12.row
+                    .list-container.devices-container.col-md-4
+                        h3 Device Types
+                        .item-list
+                    .new-window.new-device-container.col-md-8
+                        .new-window-box
+                            form.form-horizontal.clearfix(role="form", onsubmit="return false;")
+                                .form-group
+                                    label.col-sm-3.control-label Name
+                                    .col-sm-7(style="padding: 0px;")
+                                        h5#device-name.text-field &nbsp;
+                                    .col-sm-2 &nbsp;
+                                .form-group
+                                    label.col-sm-3.control-label Capability:
+                                    .col-sm-9 &nbsp;
+                                .capability-keys
+
+        script#templateDeviceView(type="text/template")
+            <% _.each(data, function(model, key) { %>
+            .row.tab-row(data-id!="<%- model.id %>")
+                .col-xs-2.exp-col <%- model.strCreated %>
+                .col-xs-2.exp-col.exp-col-read <%- model.title || '' %>
+                .col-xs-2.exp-col.exp-col-edit
+                    input.js-select-edit-feedback-title.input-in-header.form-control(type="text", value!="<%- model.title || '' %>", class="validate[required]")
+                .col-xs-2.exp-col.exp-col-read <%- model.strStarts %>
+                .col-xs-2.exp-col.exp-col-edit
+                    input.js-select-new-feedback-startdate.input-in-header.form-control(type="text", value!="<%- model.strStarts || '' %>")
+                .col-xs-2.exp-col.exp-col-read <%- model.strExpires %>
+                .col-xs-2.exp-col.exp-col-edit
+                    input.js-select-new-feedback-enddate.input-in-header.form-control(type="text", value!="<%- model.strExpires || '' %>")
+                .col-xs-1.exp-col  <%- model.answersCount || '0' %>
+                .col-xs-2.exp-col
+                    img(src!="<%- ( ( model.author || {} ).picInfo || {} ).url || 'images/assets/misc/profile_default.png?_=' + $.now() %>")
+                    span <%- ( ( model.author || {} ).firstName || '' ) + ' ' + ( ( model.author || {} ).lastName || '' ) %>
+                .col-xs-1.exp-col.tab-row-collaps.text-right
+                    span.arrow-expand
+                .row.tab-box.col-xs-12
+            <% }); %>
+
+        script#templateCapabilityKeysView(type="text/template")
+            <% _.each(data, function(value, key) { %>
+            .form-group
+                .col-sm-1 &nbsp;
+                label.col-sm-3.control-label <%- key %>
+                .col-sm-5(style="margin-bottom: 10px;")
+                    h5.text-field <%- value %>
+                .col-sm-3 &nbsp;
+            <% }); %>
+
+        script#templateDevicesView(type="text/template")
+            <% _.each(data, function(model, key) { %>
+            .row.list-row(did!="<%- model.name %>")
+                span.glyphicon.glyphicon-ok
+                | <%- model.name %>
+            <% }); %>
+            .row.list-row-btns
+                button.btn.btn-primary.add-device(data-dismiss="modal", type="button") +
+                button.btn.btn-danger.remove-device(data-dismiss="modal", type="button", disabled="disabled") -
+
+        script#templateActionDeviceCapabilityRowView(type="text/template")
+            <% _.each(data, function(value, key) { %>
+            .action-group
+                label.col-sm-5.control-label <%- key %>
+                .col-sm-7(style="padding: 0px;")
+                    h5.text-field <%- value %>
+            <% }); %>
+
+        script#templateActionDeviceTypeFormView(type="text/template")
+            form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
+                .form-group
+                    label.col-sm-3.control-label(for="name") Name
+                    .col-sm-9(style="padding: 0px;")
+                        input.form-control(type="text", readonly="readonly", name="device-name", value!="<%- model.name %>")
+                .form-group
+                    label.col-sm-3.control-label Capability:
+                .capability-keys
+                    <% _.each((model.capability || {}), function(value, key) { %>
+                    .form-group
+                        .col-sm-1 &nbsp;
+                        label.col-sm-3.control-label(for="Storage") <%- key %>
+                        .col-sm-8(style="padding: 0px;")
+                            input.form-control(type="text", name="device-type", readonly="readonly", value!="<%- value || '' %>")
+                    <% }); %>
+
+        script#templateCapabilityKeyView(type="text/template")
+            .form-group
+                .col-sm-3 &nbsp;
+                .col-sm-4
+                    input.form-control(type="text", name="capability-key", value="")
+                .col-sm-3
+                    input.form-control(type="text", name="capability-value", value="")
+                .col-sm-2
+                    button.btn.btn-danger.remove-capability(type="button") -
+
+        #new-device.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
+            .modal-dialog
+                .modal-content.new-device-container
+                    .modal-header
+                        h4
+                    .modal-body.clearfix
+                        .create-window.new-device-container
+                            .new-window-box
+                                form.form-horizontal.clearfix(role="form",  onsubmit="return false;")
+                                    .form-group
+                                        label.col-sm-3.control-label(for="name") Name
+                                        .col-sm-7
+                                            input.form-control(type="text", name="name", value="")
+                                        .col-sm-2 &nbsp;
+                                    .form-group
+                                        label.col-sm-3.control-label Capability:
+                                        .col-sm-9 &nbsp;
+                                    .capability-keys
+                                    .form-group
+                                        .col-sm-3 &nbsp;
+                                        .col-sm-7(style="border-top: 1px solid #ccc; padding-top: 10px;")
+                                            button.btn.btn-primary.add-capability(type="button") +
+                                        .col-sm-2 &nbsp;
+                    .modal-footer
+                        button.btn.btn-primary.save-device(style="margin-right: 20px;", type="button") Save
+                        button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
+
+        #confirm-alert.modal.fade(tabindex="-1", role="dialog", aria-labelledby="confirm-alert-label", aria-hidden="true")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4#confirm-alert-label.modal-title are you sure?
+                    .modal-body.clearfix
+                    .modal-footer
+                        button.btn.btn-default.yes(data-dismiss="modal", style="margin-right: 20px;", type="button") Confirm
+                        button.btn.btn-default.no(data-dismiss="modal", aria-hidden="true", type="button") Cancel
+
+        #error-alert.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4.modal-title Error
+                    .modal-body.clearfix
+                        p 
+                    .modal-footer
+                        button.btn.btn-default.no(data-dismiss="modal", type="button") Ok
+
+        #general-alert.modal.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4.modal-title 
+                    .modal-body.clearfix
+                        p
+                    .modal-footer
+                        button.btn.btn-default.no(data-dismiss="modal", type="button") Ok
+
+        form(enctype="multipart/form-data", method="post", style="display: none; width: 0; height: 0;", onsubmit="return false;")
+            input#topicIcon(type="file", name="topicIcon", style="display: none;")
+
+        iframe#downloadFrame(width="0", height="0", name="downloadFrame", style="display: none;")
+
+        script(data-main="js/device" src="js/libs/require.js")

@@ -253,6 +253,455 @@ a {
   height: 660px;
   margin: 0 auto;
 }
+.rules-wrapper .main-contents-container .main-content.active {
+  display: block;
+}
+.rules-wrapper .main-contents-container .main-content {
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+}
+.rules-wrapper .main-contents-container .main-content .tab-header-row {
+  border-bottom: 1px solid #bdcdd5;
+  margin: 10px 0 0;
+  padding: 10px 0;
+}
+.rules-wrapper .main-contents-container .main-content .tab-header-row > div {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 34px;
+  white-space: nowrap;
+}
+.rules-wrapper .main-contents-container .main-content .tab-header-row button {
+  color: #3d8ede;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row,
+.rules-wrapper .main-contents-container .main-content .row.tab-row,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row {
+  margin: 0;
+  border-bottom: 1px solid #bdcdd5;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col {
+  color: #5b5b5b;
+  font-size: 14px;
+  line-height: 39px;
+  height: 42px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: none;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img#calImg,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img#calImg,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img#calImg,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img#calImg,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img.datepick-trigger,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img.datepick-trigger,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img.datepick-trigger,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img.datepick-trigger {
+  border-radius: 0;
+  height: 25px;
+  margin-left: 5px;
+  margin-top: -5px;
+  width: 26px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col input,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col input,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col input,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col input {
+  border: 2px solid #ecebeb;
+  display: inline-block;
+  margin-top: 5px;
+  width: 88%;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col.exp-col-read,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col.exp-col-read,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col.exp-col-read,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col.exp-col-read {
+  display: block;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col.exp-col-edit,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col.exp-col-edit,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col.exp-col-edit,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col.exp-col-edit {
+  overflow: unset;
+  display: none;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box {
+  display: none;
+  margin: 0;
+  padding: 0;
+/*height: 510px;*/
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-select-pic,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-select-pic,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-select-pic,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-select-pic {
+  background: transparent url("../images/assets/list_new_exp/img_bg.png") no-repeat center center/contain;
+  width: 136px;
+  height: 102px;
+  position: relative;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box > div:first-child,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box > div:first-child,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box > div:first-child,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box > div:first-child {
+  border-top: 1px solid #bdcdd5;
+  margin: 1px 50px 0;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .esp-label {
+  color: #787878;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .no-image-choosen,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .no-image-choosen,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .no-image-choosen,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .no-image-choosen {
+  color: #787878;
+  font-style: italic;
+  left: 10px;
+  position: absolute;
+  top: 30px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .no-image-choosen span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .no-image-choosen span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .no-image-choosen span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .no-image-choosen span {
+  color: #f00;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .topic-sel-icon,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .topic-sel-icon,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .topic-sel-icon,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .topic-sel-icon {
+  background: transparent url("../images/assets/list_new_exp/btn_file_normal.png") no-repeat 0 0;
+  cursor: pointer;
+  display: inline-block;
+  height: 39px;
+  left: 80px;
+  position: absolute;
+  top: 60px;
+  width: 51px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box select,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box select,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box select,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box select {
+  height: 40px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp {
+  background-color: #fff;
+  border: 2px solid #ecebeb;
+  border-radius: 4px;
+  margin-right: 50px;
+  min-height: 38px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-esp-label,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-esp-label {
+  background-color: #83a3af;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  display: inline-block;
+  margin: 4px;
+  padding: 3px 6px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-esp-label span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-esp-label span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-esp-label span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-esp-label span {
+  cursor: pointer;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-exp-plus {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  line-height: 28px;
+  margin-right: 8px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp {
+  display: none;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box {
+  background-color: #fff;
+  border: 2px solid #ecebeb;
+  border-radius: 4px;
+  margin-right: 50px;
+  padding: 5px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header {
+  height: 38px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  line-height: 20px;
+  margin-right: 3px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell {
+/*background-color: #eee;*/
+  border-radius: 10px;
+  height: 40px;
+  line-height: 36px;
+  margin: 3px;
+  cursor: pointer;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span {
+  background-color: #006198;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  margin: 2px 10px 0 8px;
+  padding: 8px;
+  float: left;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover {
+  background-color: #83a3af;
+  font-weight: 600;
+  color: #fff;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span {
+  background-color: #fff;
+  color: #83a3af;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover {
+  background-color: #f8f8f8;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp {
+  position: relative;
+  color: #787878;
+  margin-right: 35px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp > span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp > span {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp > span span,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp > span span {
+  color: #f00;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box textarea,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box textarea,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box textarea,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box textarea {
+  border: 2px solid #ecebeb;
+  border-radius: 4px;
+  resize: none;
+  width: 100%;
+  height: 75px;
+  padding: 0 10px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer {
+  height: 50px;
+  width: 100%;
+  margin-top: 5px;
+  background-color: #e9f0f2;
+  padding-top: 7px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer button,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer button,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer button,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer button {
+  min-width: 160px;
+  height: 36px;
+  color: #3583d9;
+  border: 2px solid #ecebeb;
+  margin: 0 10px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer button.del-btn,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer button.del-btn,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer button.del-btn,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer button.del-btn {
+  color: #e18c8d;
+  border: 2px solid #e18c8d;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-expand {
+  background: transparent url("../images/assets/list_new_exp/arrow_dn_lg.png") no-repeat 0 0;
+  cursor: pointer;
+  display: inline-block;
+  height: 9px;
+  margin-left: 12px;
+  width: 16px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-right,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-right,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-right,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-right,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-left {
+  background: transparent url("../images/assets/list_new_exp/arrow_right_lg.png") no-repeat 0 0;
+  height: 16px;
+  left: 130px;
+  position: absolute;
+  top: 13px;
+  width: 10px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-left,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-left {
+  background-image: url("../images/assets/list_new_exp/arrow_left_lg.png");
+  display: inline-block;
+  left: -15px;
+  position: relative;
+  top: 3px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .js-show-macideas,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .js-show-macideas,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .js-show-macideas,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .js-show-macideas,
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .js-back-to-groups,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .js-back-to-groups,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .js-back-to-groups,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .js-back-to-groups {
+  color: #3583d9;
+  margin: 4px 0;
+  width: 120px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.js-current-question {
+  margin-top: 15px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.js-current-question button.js-back-to-groups {
+  margin-top: 40px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.js-current-question img {
+  height: 100px;
+  margin: 10px 0;
+}
+.rules-wrapper .main-contents-container .main-content .tab-idea-row textarea,
+.rules-wrapper .main-contents-container .main-content .tab-new-idea-row textarea {
+  min-height: 150px;
+}
+.rules-wrapper .main-contents-container .main-content .tab-new-row {
+  display: none;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-row.active,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row.active {
+  display: block;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.active > div,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row.active > div,
+.rules-wrapper .main-contents-container .main-content .row.tab-row.active > div,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row.active > div {
+  background-color: #f8f8f8;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-idea-row.active .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row.active .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-row.active .arrow-expand,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row.active .arrow-expand {
+  background: transparent url("../images/assets/list_new_exp/arrow_up_lg.png") no-repeat 0 0;
+}
 .rules-wrapper .main-contents-container .list-container .item-list {
   width: 300px;
   padding: 10px 40px;
@@ -357,6 +806,68 @@ a {
   min-height: 50px;
   width: 100%;
   margin-top: 20px;
+}
+.row.tab-buttons {
+  padding-top: 15px;
+}
+.row.tab-buttons button {
+  border: 2px solid #f5f4f5;
+  color: #7fadca;
+  font-size: 16px;
+  height: 38px;
+  padding: 0 15px;
+}
+.row.tab-buttons button .user-icon {
+  height: 30px;
+  margin-right: 10px;
+  width: 30px;
+}
+.row.tab-buttons button.js-download-report {
+  min-width: 160px;
+}
+.row.tab-buttons input {
+  border: 2px solid #f5f4f5;
+  display: inline-block;
+  height: 38px;
+  padding-left: 34px;
+  position: relative;
+  box-shadow: none;
+}
+.row.tab-buttons label {
+  line-height: 38px;
+  margin: 0;
+  text-align: right;
+}
+.row.tab-buttons .sel-date-field {
+  padding-left: 0;
+}
+.row.tab-buttons .sel-date-field input {
+  padding: 0;
+  text-align: center;
+}
+.row.tab-buttons span.icon-search {
+  background: rgba(0,0,0,0) url("../images/assets/misc/icon_search.png") no-repeat scroll 0 0;
+  display: inline-block;
+  height: 22px;
+  left: 8px;
+  position: absolute;
+  top: 10px;
+  width: 21px;
+  z-index: 7;
+}
+.row.tab-buttons span.icon-search-reset {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 18px;
+  line-height: 12px;
+  padding-left: 5px;
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  width: 18px;
 }
 @media (max-width: 992px) {
 }

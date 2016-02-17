@@ -376,6 +376,20 @@ router.get('/', function (req, res) {
     });
 });
 
+/* GET Rules page. */
+router.get('/Rules', function (req, res) {        
+    res.render('rules', {
+        title: 'Rules Engine Console'
+    });
+});
+
+/* GET Devices page. */
+router.get('/Device', function (req, res) {        
+    res.render('device', {
+        title: 'Device Management Console'
+    });
+});
+
 
 
 /* rest api GET. */
