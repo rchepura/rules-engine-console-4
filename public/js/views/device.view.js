@@ -40,18 +40,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     $('#device-name').text(cData.name);
                     
                     $cKeys.html(_.template($('#templateCapabilityKeysView').html(), {data: (cData.capability || {}) }));
-                    
-//                    $('#device-name').text(cData.name);
-//                    $('#device-Storage').text((cData.capability || {}).Storage || 'N/A');
-//                    $('#device-Recording').text((cData.capability || {}).Recording || 'N/A');
-//                    $('#device-Storage').get(0).selectedIndex = 0;
-//                    $('#device-Recording').get(0).selectedIndex = 0;
-//                    if ( 'NO' == (cData.capability || {}).Storage ) {
-//                        $('#device-Storage').get(0).selectedIndex = 1;
-//                    }
-//                    if ( 'NO' == (cData.capability || {}).Recording ) {
-//                        $('#device-Recording').get(0).selectedIndex = 1;
-//                    }
                 }
                 
             } else {

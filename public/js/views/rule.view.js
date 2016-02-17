@@ -13,7 +13,9 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             });
             
             $('#new-rule .save-rule').off().on('click', function(e) {
-                me.saveRule(e);
+                me.options.eventPubSub.trigger('getAllActions', function(allActions) {
+                    me.saveRule(e, allActions || {});
+                });
             });
         },
         events: {
@@ -25,8 +27,10 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             var me = this,
                 $elem = $(e.currentTarget),
                 $elParent = $elem.parent(),
+                $cKeys = me.$el.find('.new-rule-container .capability-keys').empty(),
                 itemId = $elem.attr('did'),
-                cData = {};
+                cData = {},
+                devType = {};
             
             if ( !$elem.hasClass('active') ) {
                 $elParent.find('.list-row.active').removeClass('active');
@@ -39,7 +43,15 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     for ( var d in cData ) {
                         if ( 'action' == d ) {
                             for ( var a in cData[d] ) {
-                                $('#rule-action-' + a).text(cData[d][a]);
+                                if ( 'deviceType' == a ) {
+                                    console.log('HERE deviceType');
+                                    top.JJJ = cData[d][a];
+                                    devType = cData[d][a] || {};
+                                    me.$el.find('.action-device-type-name').text(devType.name || 'N/A');
+                                    $cKeys.html(_.template($('#templateActionDeviceCapabilityRowView').html(), {data: (devType.capability || {})}));
+                                } else {
+                                    $('#rule-action-' + a).text(cData[d][a]);
+                                }
                             }
                         } else {
                             if ( 'conditionJexl' == d ) {
@@ -111,33 +123,24 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 }
             });
         },
-        saveRule: function(e) {
+        saveRule: function(e, allActions) {
             var me = this,
                 $elem = $(e.currentTarget),
                 $parent = $elem.closest('.modal-content'),
                 $inputFields = $parent.find('input.rule-field'),
-                $inputActionFields = $parent.find('.rule-action-pane input'),
                 model = new me.Model(),
-                data = {};
+                data = {},
+                actionID = $parent.find('select[name="action"]').val();
                 
                 $inputFields.each(function() {
                     var $this = $(this);
                     data[$this.attr('name')] = $.trim($this.val());
                 });
-                data.action = {};
-                $inputActionFields.each(function() {
-                    var $this = $(this);
-                    
-                    if ( 'checkbox' == $this.attr('type') ) {
-                        data.action[$this.attr('name')] = $this.get(0).checked;
-                    } else {
-                        data.action[$this.attr('name')] = $.trim($this.val());
-                    }
-                });
                 
+                data.action = allActions[actionID] || {};                
                 data.conditionJexl = escape($('code.condition-jexl').text());
                 
-                top.RULESDATA = data;
+//                top.RULESDATA = data; return;
                 
                 if ( !data.ruleName ) {
                     Alerts.Error.display({title: 'Error', content: "Rule name cannot be empty"});

@@ -298,13 +298,6 @@ a {
 .rules-wrapper .main-contents-container .new-window .new-window-box .form-group {
   margin-bottom: 0;
 }
-.rules-wrapper .main-contents-container .new-window .new-window-box .text-field {
-  background-color: #f5f5f5;
-  border-radius: 6px;
-  margin: 4px 0 0;
-  min-height: 25px;
-  padding: 5px;
-}
 .rules-wrapper .main-contents-container .new-window .new-window-box .text-cell {
   padding: 0;
 }
@@ -314,6 +307,13 @@ a {
   border-radius: 4px;
   margin: 15px 0;
   padding: 10px;
+}
+.text-field {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  margin: 4px 0 0;
+  min-height: 25px;
+  padding: 5px;
 }
 #new-rule .modal-dialog,
 #new-action .modal-dialog {

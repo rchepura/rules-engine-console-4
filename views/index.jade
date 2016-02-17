@@ -79,9 +79,16 @@ block content
                                             .col-sm-9(style="padding: 0px;")
                                                 h5#rule-action-actionTemplateDescription.text-field &nbsp;
                                         .action-group
-                                            label.col-sm-3.control-label Type
-                                            .col-sm-9(style="padding: 0px;")
-                                                h5#rule-action-type.text-field &nbsp;
+                                            label.col-sm-3.control-label Device Type
+                                            .col-sm-9.action-device-type-pane
+                                                .action-group
+                                                    label.col-sm-3.control-label Name
+                                                    .col-sm-9(style="padding: 0px;")
+                                                        h5.action-device-type-name.text-field &nbsp;
+                                                .action-group
+                                                    label.col-sm-3.control-label Capability:
+                                                    .col-sm-9(style="height: 30px;")
+                                                .capability-keys
                                         .action-group
                                             label.col-sm-3.control-label Push
                                             .col-sm-9(style="padding: 0px;")
@@ -224,9 +231,22 @@ block content
                     .col-sm-9(style="padding: 0px;")
                         input.form-control(type="text", readonly="readonly", name="actionTemplateDescription", value!="<%- model.actionTemplateDescription %>")
                 .form-group
-                    label.col-sm-3.control-label(for="type") Type
-                    .col-sm-9(style="padding: 0px;")
-                        input.form-control(type="text", readonly="readonly", name="type", value!="<%- model.type %>")
+                    label.col-sm-3.control-label Device Type
+                    .col-sm-9.action-device-type-pane
+                        .action-group
+                            label.col-sm-2.control-label Name
+                            .col-sm-10
+                                h5.action-device-type-name.text-field <%- (model.deviceType || {}).name || 'N/A' %>
+                        .action-group
+                            label.col-sm-3.control-label Capability:
+                            .col-sm-9(style="height: 30px;")
+                        .capability-keys
+                            <% _.each(((model.deviceType || {}).capability || {}), function(value, key) { %>
+                            .form-group
+                                label.col-sm-4.control-label <%- key %>
+                                .col-sm-8(style="padding: 0px;")
+                                    h5.text-field <%- value %>
+                            <% }); %>
                 .form-group
                     .col-sm-offset-3.col-sm-9
                         .checkbox
@@ -265,8 +285,8 @@ block content
         script#templateActionDeviceCapabilityRowView(type="text/template")
             <% _.each(data, function(value, key) { %>
             .action-group
-                label.col-sm-4.control-label <%- key %>
-                .col-sm-8(style="padding: 0px;")
+                label.col-sm-5.control-label <%- key %>
+                .col-sm-7(style="padding: 0px;")
                     h5.text-field <%- value %>
             <% }); %>
 

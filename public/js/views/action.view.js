@@ -11,6 +11,9 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             me.options.eventPubSub.bind("initAction", function() {
                 me.init();
             });
+            me.options.eventPubSub.bind("getAllActions", function(callback) {
+                callback(me.AllActions);
+            });
             $('#new-action .save-action').off().on('click', function(e) {
                 me.saveAction(e);
             });
@@ -42,8 +45,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     }
                     $('#device-type-name').text(devType.name || 'N/A');
                     $cKeys.html(_.template($('#templateActionDeviceCapabilityRowView').html(), {data: (devType.capability || {})}));
-//                    $('#device-type-Storage').text((devType.capability || {}).Storage || 'N/A');
-//                    $('#device-type-Recording').text((devType.capability || {}).Recording || 'N/A');
                 }
                 
             } else {
@@ -223,7 +224,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         renderNewRuleActions: function(actionTemplateId) {
             var me = this,                
-                template = _.template($('#templateActionFormView').html(), {model: me.AllActions[actionTemplateId] || {}});            
+                template = _.template($('#templateActionFormView').html(), {model: me.AllActions[actionTemplateId] || {}});
             
             $('#new-rule .new-rule-container .rule-action-pane').html(template);
         },
