@@ -284,13 +284,13 @@ a {
   padding: 0 12px 3px;
 }
 .rules-wrapper .main-contents-container .new-window {
-  padding: 50px 20px 10px;
-  min-height: 200px;
+  padding: 56px 20px 10px;
+/*min-height: 200px;*/
 }
 .rules-wrapper .main-contents-container .new-window .new-window-box {
   display: none;
   border: 1px solid #ccc;
-  min-height: 300px;
+/*min-height: 300px;*/
   width: 100%;
   padding: 20px;
   margin-bottom: 60px;
