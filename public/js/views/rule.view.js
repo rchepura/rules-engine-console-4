@@ -44,8 +44,6 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                         if ( 'action' == d ) {
                             for ( var a in cData[d] ) {
                                 if ( 'deviceType' == a ) {
-                                    console.log('HERE deviceType');
-                                    top.JJJ = cData[d][a];
                                     devType = cData[d][a] || {};
                                     me.$el.find('.action-device-type-name').text(devType.name || 'N/A');
                                     $cKeys.html(_.template($('#templateActionDeviceCapabilityRowView').html(), {data: (devType.capability || {})}));
