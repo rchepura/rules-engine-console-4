@@ -56,6 +56,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 modalNewDevice = $('#new-device'),
                 keysBox = modalNewDevice.find('.capability-keys').empty();
 
+            keysBox.append(_.template($('#templateCapabilityKeyView').html(), {}));
             keysBox.off().on('click', '.remove-capability', function() {
                 $(this).closest('.form-group').remove();
             });

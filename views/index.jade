@@ -233,18 +233,18 @@ block content
                 .form-group
                     label.col-sm-3.control-label Device Type
                     .col-sm-9.action-device-type-pane
-                        .action-group
+                        .form-group
                             label.col-sm-2.control-label Name
                             .col-sm-10
                                 h5.action-device-type-name.text-field <%- (model.deviceType || {}).name || 'N/A' %>
-                        .action-group
+                        .form-group
                             label.col-sm-3.control-label Capability:
-                            .col-sm-9(style="height: 30px;")
+                            .col-sm-9(style="height: 25px;")
                         .capability-keys
                             <% _.each(((model.deviceType || {}).capability || {}), function(value, key) { %>
                             .form-group
                                 label.col-sm-4.control-label <%- key %>
-                                .col-sm-8(style="padding: 0px;")
+                                .col-sm-8
                                     h5.text-field <%- value %>
                             <% }); %>
                 .form-group
@@ -454,7 +454,7 @@ block content
                                     .capability-keys
                                     .form-group
                                         .col-sm-3 &nbsp;
-                                        .col-sm-7
+                                        .col-sm-7(style="border-top: 1px solid #ccc; padding-top: 10px;")
                                             button.btn.btn-primary.add-capability(type="button") +
                                         .col-sm-2 &nbsp;
                     .modal-footer
