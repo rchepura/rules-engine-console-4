@@ -27,7 +27,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $elParent = $elem.parent(),
                 $cKeys = me.$el.find('.new-device-container .capability-keys').empty(),
                 itemId = $elem.attr('did'),
-                cData = {}, cCaps;
+                cData = {};
             
             if ( !$elem.hasClass('active') ) {
                 $elParent.find('.list-row.active').removeClass('active');
@@ -36,14 +36,10 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 if ( me.AllDevices[itemId] ) {
                     me.$el.find('.new-device-container .new-window-box').fadeIn();
                     cData = me.AllDevices[itemId];
-                    cCaps = cData.capability || {};
                     
                     $('#device-name').text(cData.name);
                     
-                    for ( var c in cCaps ) {
-                        console.log(cCaps[c]);
-                        $cKeys.append(_.template($('#templateCapabilityKeysView').html(), {model: {key: c, value: cCaps[c]} }));
-                    }
+                    $cKeys.html(_.template($('#templateCapabilityKeysView').html(), {data: (cData.capability || {}) }));
                     
 //                    $('#device-name').text(cData.name);
 //                    $('#device-Storage').text((cData.capability || {}).Storage || 'N/A');

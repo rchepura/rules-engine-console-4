@@ -24,6 +24,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             var me = this,
                 $elem = $(e.currentTarget),
                 $elParent = $elem.parent(),
+                $cKeys = me.$el.find('.new-action-container .capability-keys').empty(),
                 itemId = $elem.attr('did'),
                 cData = {},
                 devType = {};
@@ -40,8 +41,9 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                         $('#action-' + d).text(cData[d]);
                     }
                     $('#device-type-name').text(devType.name || 'N/A');
-                    $('#device-type-Storage').text((devType.capability || {}).Storage || 'N/A');
-                    $('#device-type-Recording').text((devType.capability || {}).Recording || 'N/A');
+                    $cKeys.html(_.template($('#templateActionDeviceCapabilityRowView').html(), {data: (devType.capability || {})}));
+//                    $('#device-type-Storage').text((devType.capability || {}).Storage || 'N/A');
+//                    $('#device-type-Recording').text((devType.capability || {}).Recording || 'N/A');
                 }
                 
             } else {
@@ -112,14 +114,20 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 
                 data.deviceType = {
                     name: $parent.find('input[name="device-name"]').val(),
-                    capability: {
-                        Storage: $parent.find('input[name="device-Storage"]').val(),
-                        Recording: $parent.find('input[name="device-Recording"]').val()
-                    }
+                    capability: {}
                 };
                 
                 if ( !actionID ) {
                     data.id = 1;
+                    
+                    $parent.find('.capability-keys .form-group').each(function() {
+                        var cKey = $.trim($(this).find('label').text()),
+                            cVal = $.trim($(this).find('input').val());
+                        if ( cKey  ) {
+                            data.deviceType.capability[cKey] = cVal;
+                        }
+                    });
+                    
                 }
                 
                 data.timeCreated = (new Date()).getTime();
