@@ -17,9 +17,98 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         events: {
             'click .add-device': "onAddDevice",
-            'click .update-device': "onUpdateDevice",
             'click .remove-device': "removeDevice",
-            'click .list-row': "selectListRow"
+            'click .remove-key': "removeKey",
+            'click .list-row': "selectListRow",
+            'click .tab-row-collaps': "openDetails",
+            'click #id-search-device-btn-search': "onSearch",
+            'click span.icon-search-reset': "onSearchReset",
+            'click .js-del-device': "removeDevice",
+            'click .js-save-device': "saveDevice",
+            'click .add-device-key': "addKeyDevice"
+        },
+        openDetails: function(e) {
+            var me = this,
+                $elem = $(e.currentTarget).closest('.tab-row'),
+                template;
+            
+            me.closeNewDevice();
+        
+            if ( !$elem.hasClass('active') ) {
+                $elem.parent().find('> .active .exp-col-edit').hide();
+                $elem.parent().find('> .active .exp-col-read').show();
+                $elem.parent().find('> .active').removeClass('active').find('.tab-box').slideUp('fast');
+                
+                template = $(_.template($('#templateDeviceDetailsView').html(), {model: (me.AllDevices[$elem.attr('did')] || {})}));
+                $elem.find('.tab-box').html(template);
+                
+                $elem.addClass('active').find('.tab-box').slideDown('fast');
+                $elem.find('.exp-col-edit').show();
+                $elem.find('.exp-col-read').hide();
+            } else {
+                $elem.find('.exp-col-edit').hide();
+                $elem.find('.exp-col-read').show();
+                $elem.removeClass('active').find('.tab-box').slideUp('fast', function() {
+                    me.$el.find('.tab-box').empty();
+                });
+            }
+        },
+        addKeyDevice: function(e) {
+            var me = this,
+                $currRow =  $(e.currentTarget).closest('.tab-box').find('.js-new-data'),
+                keyText = $.trim($currRow.find('input').val()),
+                $cpKeyRow;
+            
+            if ( $currRow.find('input').validationEngine('validate') ) {
+                $cpKeyRow = $currRow.clone().toggleClass('js-new-data js-data-row');
+                $cpKeyRow.find('div').first().empty().addClass('js-data-key').text(keyText);
+                $cpKeyRow.find('select').get(0).selectedIndex =  $currRow.find('select').get(0).selectedIndex;
+                $cpKeyRow.find('div').last().append('<span class="remove-key">X</span>');
+                $currRow.before($cpKeyRow);
+                $currRow.find('input').val('');
+                $currRow.find('select').get(0).selectedIndex = 0;
+            }
+        },
+        removeKey: function(e) {
+            var me = this,
+                $elem = $(e.currentTarget);        
+            
+            $elem.closest('.key-row').remove();
+        },
+        closeNewDevice: function() {
+            var me = this,
+                $elem = me.$el.find('.js-new-device');
+            
+            if ( $elem.hasClass('active') ) {
+                $elem.find('.tab-box').slideUp('fast', function() {
+                    $elem.remove();
+                });
+            }
+        },
+        onSearch: function() {
+            var me = this,
+                strSearch = $.trim(me.$el.find('input#id-search-device').val()).toLowerCase(),
+                res = [];
+
+            if ( me.AllDeviceList ) {
+
+                if ( '' !== strSearch ) {
+                    for ( var i = 0, len = me.AllDeviceList.length; i < len; i++ ) {
+                        if ( 0 === (me.AllDeviceList[i].name || '').toLowerCase().indexOf(strSearch) ) {
+                            res.push(me.AllDeviceList[i]);
+                        }
+                    }
+                } else {
+                    res = me.AllDeviceList;
+                }
+                me.render(res);
+            }
+        },
+        onSearchReset: function() {
+            var me = this;
+
+            me.$el.find('input#id-search-device').val('');
+            me.render(me.AllDeviceList);
         },
         selectListRow: function(e) {
             var me = this,
@@ -53,6 +142,17 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         onAddDevice: function(e) {
             var me = this,
+                template = $(_.template($('#templateDeviceView').html(), {data: [{name: ''}]}));
+            
+            me.$el.find('.js-new-device').remove();
+            
+            template.addClass('js-new-device');
+            
+            me.$el.find('.content-device-list').prepend(template);
+            me.$el.find('.content-device-list .js-new-device .tab-row-collaps').click();
+        },
+        onAddDeviceOLD: function(e) {
+            var me = this,
                 modalNewDevice = $('#new-device'),
                 keysBox = modalNewDevice.find('.capability-keys').empty();
 
@@ -68,13 +168,21 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         getDevices: function(cb) {
             var me = this,
                 device = new me.Model();
+
+            me.AllDevices = {};
+            me.AllDeviceList = [];
             
             Util.showSpinner();
             device.fetch({
                 url: 'api/dtcontroller/device/type',
                 success: function(model, res) {
                     if ( res && false !== res.success ) {
-                        me.currDevices = res || [];
+                        me.AllDeviceList = res || [];
+                        
+                        me.AllDeviceList.forEach(function(item) {
+                            me.AllDevices[item.name] = item;
+                        });
+                        
                         if ( cb ) {
                             cb(res || []);
                         }
@@ -98,41 +206,38 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 }
             });
         },
-        saveDevice: function(e, updateDeviceType) {
+        saveDevice: function(e) {
             var me = this,
                 $elem = $(e.currentTarget),
-                $parent = $elem.closest('.new-device-container'),
+                deviceName = $elem.attr('did'),
+                $parent = $elem.closest('.tab-row'),
                 model = new me.Model(),
-                data = {                    
-                    capability: {
-                        Storage: $parent.find('select[name="Storage"]').val(),
-                        Recording: $parent.find('select[name="Recording"]').val()
-                    }
-                },
+                data = {},
                 loc = 'api/dtcontroller/device/type';
+            
+                if ( !$parent.find('input.js-select-edit-device-title').validationEngine('validate') ) {
+//                    Alerts.Error.display({title: 'Error', content: "Device name cannot be empty"});
+                    return false;
+                }
                 
-                if ( updateDeviceType ) {
-                    loc += '/' + updateDeviceType;
-                    data.name = updateDeviceType;
+                if ( deviceName ) {
+                    loc += '/' + deviceName;
                 } else {
                     data.id = 1;
-                    data.name = $.trim($parent.find('input[name="name"]').val());
-                    data.capability = {};
-                
-                    $parent.find('.capability-keys .form-group').each(function() {
-                        var cKey = $.trim($(this).find('input[name="capability-key"]').val()),
-                            cVal = $.trim($(this).find('input[name="capability-value"]').val());
-                        if ( cKey  ) {
-                            data.capability[cKey] = cVal;
-                        }
-                    });
-                    
-                
-                    if ( !data.name ) {
-                        Alerts.Error.display({title: 'Error', content: "Device name cannot be empty"});
-                        return false;
-                    }
                 }
+                data.name = $.trim($parent.find('input.js-select-edit-device-title').val());
+                data.created = (new Date().getTime());
+                data.capability = {};
+                
+                $parent.find('.device-details-list .js-data-row').each(function() {
+                    var cKey = $.trim($(this).find('.js-data-key').text()),
+                        cVal = $.trim($(this).find('select').val());
+                    if ( cKey  ) {
+                        data.capability[cKey] = cVal;
+                    }
+                });
+
+                
                 
 //                top.DEVICESSDATA = data; return;
                 
@@ -145,7 +250,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     me.hideLoader();
                     if ( res && /SUCCESS/.test(res) ) {
                         me.getDevices(function(devices) {
-                            me.renderDevices(devices);
+                            me.render(devices);
                         });
                         me.$el.find('.new-device-container .new-window-box').fadeOut();
                         $('#new-device').modal('hide');
@@ -160,19 +265,11 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
             });
             return false;
         },
-        onUpdateDevice: function(e) {
-            var me = this,
-                $elem = $(e.currentTarget),
-                $parent = $elem.closest('.new-device-container');
-            
-            me.saveDevice(e, $parent.find('h5#device-name').text());
-        },
         removeDevice: function(e) {
             var me = this,            
                 model = new me.Model({id: 'del'}),
                 $elem = $(e.currentTarget),
-                $container = $elem.closest('.item-list'),
-                deviceTypeName = $container.find('.list-row.active').attr('did');
+                deviceTypeName = $elem.attr('did');
         
             if ( deviceTypeName ) {
                 Util.showSpinner();
@@ -181,7 +278,7 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                     complete: function(res) {
                         if ( 200 == (res || {}).status ) {
                             me.getDevices(function(devices) {
-                                me.renderDevices(devices);
+                                me.render(devices);
                             });
                         } else {
                             Alerts.Error.display({
@@ -200,10 +297,8 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
                 $deviceSelect = $('#new-action .new-action-container select[name="deviceType"]').empty();
 
             me.$el.find('.new-device-container .new-window-box').fadeOut();
-            me.AllDevices = {};
 
             _.each(devices, function (model, key) {
-                me.AllDevices[model.name] = model;
                 $deviceSelect.append('<option value="' + model.name + '">' + model.name + '</option>');
             });
             
@@ -221,15 +316,15 @@ define(['jquery', 'backbone', 'moment'], function($, Backbone, Moment) {
         },
         render: function(data) {
             var me = this,
-                template = $(_.template($('#templateFeedbackView').html(), {data: data}));
+                template = $(_.template($('#templateDeviceView').html(), {data: data}));
             
-            me.$el.find('.content-feedback-list').html(template);
+            me.$el.find('.content-device-list').html(template);
         },
         init: function() {
             var me = this;
             
             me.getDevices(function(devices) {
-                me.renderDevices(devices);
+                me.render(devices);
             });
         },
         showLoader: function() {

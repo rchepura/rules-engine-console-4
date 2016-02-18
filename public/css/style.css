@@ -275,15 +275,36 @@ a {
 .rules-wrapper .main-contents-container .main-content .tab-header-row button {
   color: #3d8ede;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row,
 .rules-wrapper .main-contents-container .main-content .row.tab-row,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row {
-  margin: 0;
   border-bottom: 1px solid #bdcdd5;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col,
+.rules-wrapper .main-contents-container .main-content .row.tab-row .device-details-list,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .device-details-list {
+  margin: 15px 0;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-row .device-details-list .key-row-header,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .device-details-list .key-row-header {
+  margin-bottom: 5px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-row .device-details-list .key-row,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .device-details-list .key-row {
+  border: 1px solid #bdcdd5;
+  height: 42px;
+  line-height: 30px;
+  padding: 5px 0;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-row .device-details-list .key-row .remove-key,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .device-details-list .key-row .remove-key {
+  color: #2b80d8;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 20px;
+}
+.rules-wrapper .main-contents-container .main-content .row.tab-row .device-details-list .key-row input,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .device-details-list .key-row input {
+  height: 30px;
+}
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col {
   color: #5b5b5b;
@@ -294,8 +315,6 @@ a {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img {
   width: 36px;
@@ -304,12 +323,8 @@ a {
   border-radius: 50%;
   border: none;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img#calImg,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img#calImg,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img#calImg,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img#calImg,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col img.datepick-trigger,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col img.datepick-trigger,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col img.datepick-trigger,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col img.datepick-trigger {
   border-radius: 0;
@@ -318,8 +333,6 @@ a {
   margin-top: -5px;
   width: 26px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col input,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col input,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col input,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col input {
   border: 2px solid #ecebeb;
@@ -327,21 +340,15 @@ a {
   margin-top: 5px;
   width: 88%;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col.exp-col-read,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col.exp-col-read,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col.exp-col-read,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col.exp-col-read {
   display: block;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .exp-col.exp-col-edit,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .exp-col.exp-col-edit,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .exp-col.exp-col-edit,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .exp-col.exp-col-edit {
   overflow: unset;
   display: none;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box {
   display: none;
@@ -349,32 +356,17 @@ a {
   padding: 0;
 /*height: 510px;*/
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-select-pic,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-select-pic,
-.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-select-pic,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-select-pic {
-  background: transparent url("../images/assets/list_new_exp/img_bg.png") no-repeat center center/contain;
-  width: 136px;
-  height: 102px;
-  position: relative;
+.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box button.add-device-key,
+.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box button.add-device-key {
+  color: #7fadca;
+  margin-top: 40px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box > div:first-child,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box > div:first-child,
-.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box > div:first-child,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box > div:first-child {
-  border-top: 1px solid #bdcdd5;
-  margin: 1px 50px 0;
-}
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .esp-label,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .esp-label,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .esp-label,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .esp-label {
   color: #787878;
   margin-bottom: 5px;
   margin-top: 10px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .no-image-choosen,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .no-image-choosen,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .no-image-choosen,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .no-image-choosen {
   color: #787878;
@@ -383,33 +375,15 @@ a {
   position: absolute;
   top: 30px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .no-image-choosen span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .no-image-choosen span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .no-image-choosen span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .no-image-choosen span {
   color: #f00;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .topic-sel-icon,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .topic-sel-icon,
-.rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .topic-sel-icon,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .topic-sel-icon {
-  background: transparent url("../images/assets/list_new_exp/btn_file_normal.png") no-repeat 0 0;
-  cursor: pointer;
-  display: inline-block;
-  height: 39px;
-  left: 80px;
-  position: absolute;
-  top: 60px;
-  width: 51px;
-}
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box select,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box select,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box select,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box select {
-  height: 40px;
+  height: 30px;
+  padding: 0 12px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp {
   background-color: #fff;
@@ -418,8 +392,6 @@ a {
   margin-right: 50px;
   min-height: 38px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-esp-label,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-esp-label,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-esp-label,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-esp-label {
   background-color: #83a3af;
@@ -430,14 +402,10 @@ a {
   margin: 4px;
   padding: 3px 6px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-esp-label span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-esp-label span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-esp-label span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-esp-label span {
   cursor: pointer;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .related-exp .related-exp-plus,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .related-exp .related-exp-plus,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .related-exp .related-exp-plus,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .related-exp .related-exp-plus {
   cursor: pointer;
@@ -446,18 +414,12 @@ a {
   line-height: 28px;
   margin-right: 8px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp {
   display: none;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box {
   background-color: #fff;
@@ -466,8 +428,6 @@ a {
   margin-right: 50px;
   padding: 5px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header {
   height: 38px;
@@ -476,8 +436,6 @@ a {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-header .related-exp-plus {
   cursor: pointer;
@@ -486,8 +444,6 @@ a {
   line-height: 20px;
   margin-right: 3px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box {
   border-top-left-radius: 0;
@@ -495,8 +451,6 @@ a {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell {
 /*background-color: #eee;*/
@@ -506,8 +460,6 @@ a {
   margin: 3px;
   cursor: pointer;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell span {
   background-color: #006198;
@@ -518,71 +470,47 @@ a {
   padding: 8px;
   float: left;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover {
   background-color: #83a3af;
   font-weight: 600;
   color: #fff;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active span,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell.active:hover span {
   background-color: #fff;
   color: #83a3af;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .available-related-exp .sel-exp-box .sel-exp-cell:hover {
   background-color: #f8f8f8;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp {
   position: relative;
   color: #787878;
   margin-right: 35px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp > span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp > span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp > span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp > span,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp > span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp > span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp > span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp > span {
   position: absolute;
   top: 6px;
   left: 10px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-was-exp > span span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-was-exp > span span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-was-exp > span span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-was-exp > span span,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .what-skills-exp > span span,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .what-skills-exp > span span,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .what-skills-exp > span span,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .what-skills-exp > span span {
   color: #f00;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box textarea,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box textarea,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box textarea,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box textarea {
   border: 2px solid #ecebeb;
@@ -592,8 +520,6 @@ a {
   height: 75px;
   padding: 0 10px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer {
   height: 50px;
@@ -602,8 +528,6 @@ a {
   background-color: #e9f0f2;
   padding-top: 7px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer button,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer button,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer button,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer button {
   min-width: 160px;
@@ -612,15 +536,11 @@ a {
   border: 2px solid #ecebeb;
   margin: 0 10px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .tab-box .exp-footer button.del-btn,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .tab-box .exp-footer button.del-btn,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .tab-box .exp-footer button.del-btn,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .tab-box .exp-footer button.del-btn {
   color: #e18c8d;
   border: 2px solid #e18c8d;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-expand,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-expand,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-expand,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-expand {
   background: transparent url("../images/assets/list_new_exp/arrow_dn_lg.png") no-repeat 0 0;
@@ -630,12 +550,8 @@ a {
   margin-left: 12px;
   width: 16px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-right,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-right,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-right,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-right,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-left,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-left,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-left,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-left {
   background: transparent url("../images/assets/list_new_exp/arrow_right_lg.png") no-repeat 0 0;
@@ -645,8 +561,6 @@ a {
   top: 13px;
   width: 10px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .arrow-left,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .arrow-left,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .arrow-left,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .arrow-left {
   background-image: url("../images/assets/list_new_exp/arrow_left_lg.png");
@@ -655,12 +569,8 @@ a {
   position: relative;
   top: 3px;
 }
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .js-show-macideas,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .js-show-macideas,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .js-show-macideas,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .js-show-macideas,
-.rules-wrapper .main-contents-container .main-content .row.tab-idea-row .js-back-to-groups,
-.rules-wrapper .main-contents-container .main-content .row.tab-new-idea-row .js-back-to-groups,
 .rules-wrapper .main-contents-container .main-content .row.tab-row .js-back-to-groups,
 .rules-wrapper .main-contents-container .main-content .row.tab-new-row .js-back-to-groups {
   color: #3583d9;
@@ -868,6 +778,9 @@ a {
   right: 8px;
   top: 10px;
   width: 18px;
+}
+.head-text {
+  color: #83a578;
 }
 @media (max-width: 992px) {
 }

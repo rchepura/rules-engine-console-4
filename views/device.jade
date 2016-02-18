@@ -17,73 +17,74 @@ block content
             .col-xs-2
                 //a#id-rules-signout.title-1(href="#/logout") Sign out
 
-        #id-device-wrapper.rules-wrapper
+        #id-devices-container.rules-wrapper
 
             .main-contents-container
-                .main-content
+                .main-content.container
                     .row.tab-buttons
                         .col-xs-3
-                            button#id-new-feedback.btn.btn-default(type="button") + New
+                            button#id-new-device.btn.btn-default.add-device(type="button") + New
                         .col-xs-6
                             form(onsubmit="return false;")
                                 .col-xs-8.row-field(style="padding: 0;")
                                     span.icon-search
-                                    input#id-search-feedback.form-control(type="text", name="modal-search-users", value="", placeholder="Search by Device name")
+                                    input#id-search-device.form-control(type="text", name="modal-search-users", value="", placeholder="Search by Device name")
                                     span.icon-search-reset x
                                 .col-xs-4.row-label
-                                    button#id-search-feedback-btn-search.btn.btn-default(type="submit") Search
+                                    button#id-search-device-btn-search.btn.btn-default(type="submit") Search
                         .col-xs-3 &nbsp;
                     .row.tab-header-row
-                        .col-xs-2 Date Added
-                        .col-xs-10 Device Name
+                        .col-xs-2.head-text Date Added
+                        .col-xs-10.head-text Device Name
                     .row.tab-new-row
-                    .content-feedback-list
-                        .row.tab-row
-                            .col-xs-2.exp-col 02/17/2016
-                            .col-xs-9.exp-col
-                                input.js-select-edit-feedback-title.input-in-header.form-control(type="text", value="light")
-                            .col-xs-1.exp-col.tab-row-collaps.text-right
-                                span.arrow-expand
-                            .row.tab-box.col-xs-12
-
-                #id-devices-container.col-xs-12.row
-                    .list-container.devices-container.col-md-4
-                        h3 Device Types
-                        .item-list
-                    .new-window.new-device-container.col-md-8
-                        .new-window-box
-                            form.form-horizontal.clearfix(role="form", onsubmit="return false;")
-                                .form-group
-                                    label.col-sm-3.control-label Name
-                                    .col-sm-7(style="padding: 0px;")
-                                        h5#device-name.text-field &nbsp;
-                                    .col-sm-2 &nbsp;
-                                .form-group
-                                    label.col-sm-3.control-label Capability:
-                                    .col-sm-9 &nbsp;
-                                .capability-keys
+                    .content-device-list.container
 
         script#templateDeviceView(type="text/template")
             <% _.each(data, function(model, key) { %>
-            .row.tab-row(data-id!="<%- model.id %>")
-                .col-xs-2.exp-col <%- model.strCreated %>
-                .col-xs-2.exp-col.exp-col-read <%- model.title || '' %>
-                .col-xs-2.exp-col.exp-col-edit
-                    input.js-select-edit-feedback-title.input-in-header.form-control(type="text", value!="<%- model.title || '' %>", class="validate[required]")
-                .col-xs-2.exp-col.exp-col-read <%- model.strStarts %>
-                .col-xs-2.exp-col.exp-col-edit
-                    input.js-select-new-feedback-startdate.input-in-header.form-control(type="text", value!="<%- model.strStarts || '' %>")
-                .col-xs-2.exp-col.exp-col-read <%- model.strExpires %>
-                .col-xs-2.exp-col.exp-col-edit
-                    input.js-select-new-feedback-enddate.input-in-header.form-control(type="text", value!="<%- model.strExpires || '' %>")
-                .col-xs-1.exp-col  <%- model.answersCount || '0' %>
-                .col-xs-2.exp-col
-                    img(src!="<%- ( ( model.author || {} ).picInfo || {} ).url || 'images/assets/misc/profile_default.png?_=' + $.now() %>")
-                    span <%- ( ( model.author || {} ).firstName || '' ) + ' ' + ( ( model.author || {} ).lastName || '' ) %>
-                .col-xs-1.exp-col.tab-row-collaps.text-right
+            .row.tab-row(did!="<%- model.name %>")
+                .col-xs-2.exp-col 02/17/2016
+                .col-xs-6.exp-col.exp-col-edit
+                    input.js-select-edit-device-title.form-control(type="text", value!="<%- model.name %>", class="validate[required]")
+                .col-xs-6.exp-col.exp-col-read <%- model.name %>
+                .col-xs-4.exp-col.tab-row-collaps.text-right
                     span.arrow-expand
                 .row.tab-box.col-xs-12
             <% }); %>
+
+        script#templateDeviceDetailsView(type="text/template")
+            .col-xs-2
+                button.btn.btn-default.add-device-key(data-dismiss="modal", type="button") + Key                
+            .col-xs-6.container.device-details-list
+                .row.key-row-header
+                    .col-xs-5.head-text(style="padding: 0px;") Key Name
+                    .col-xs-7.head-text Key Value
+                <% _.each(((model || {}).capability || {}), function(value, key) { %>
+                .row.key-row.js-data-row
+                    .col-xs-5.js-data-key <%- key %>
+                    .col-xs-6
+                        select.form-control(name="action")
+                            option(value="array") array
+                            option(value="boolean") boolean
+                            option(value="string") string
+                            option(value="number") number
+                    .col-xs-1.text-right
+                        span.remove-key x
+                <% }); %>
+                .row.key-row.js-new-data
+                    .col-xs-5
+                        input.form-control(type="text", value="", placeholder="New Key", class="validate[required]")
+                    .col-xs-6
+                        select.form-control(name="action")
+                            option(value="array") array
+                            option(value="boolean") boolean
+                            option(value="string") string
+                            option(value="number") number
+                    .col-xs-1.text-right
+            .col-xs-4
+            .col-xs-12.exp-footer
+                button.js-del-device.btn.btn-default.del-btn(type="button", did!="<%- model.name %>") Delete this device
+                button.js-cancel.btn.btn-default.pull-right(type="button") Cancel
+                button.js-save-device.btn.btn-default.pull-right(type="button", did!="<%- model.name %>") Save
 
         script#templateCapabilityKeysView(type="text/template")
             <% _.each(data, function(value, key) { %>

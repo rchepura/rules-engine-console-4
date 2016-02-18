@@ -291,10 +291,29 @@ a {
                     color: #3D8EDE;
                 }
             }
-            .row.tab-idea-row, .row.tab-new-idea-row,
             .row.tab-row, .row.tab-new-row {
-                margin: 0;
                 border-bottom: 1px solid #BDCDD5;
+                .device-details-list {
+                    margin: 15px 0;
+                    .key-row-header {
+                        margin-bottom: 5px;
+                    }
+                    .key-row {
+                        border: 1px solid #bdcdd5;
+                        height: 42px;
+                        line-height: 30px;
+                        padding: 5px 0;
+                        .remove-key {
+                            color: #2B80D8;
+                            font-weight: 600;
+                            cursor: pointer;
+                            font-size: 20px;
+                        }
+                        input {
+                            height: 30px;
+                        }
+                    }
+                }
                 .exp-col {
                     color: #5b5b5b;
                     font-size: 14px;
@@ -336,16 +355,9 @@ a {
                     margin: 0;
                     padding: 0;
                     /*height: 510px;*/
-                    
-                    .exp-select-pic {
-                        background: transparent url("../images/assets/list_new_exp/img_bg.png") no-repeat center center / contain;
-                        width: 136px;
-                        height: 102px;
-                        position: relative;
-                    }
-                    > div:first-child {
-                        border-top: 1px solid #BDCDD5;
-                        margin: 1px 50px 0;
+                    button.add-device-key {
+                        color: #7fadca;
+                        margin-top: 40px;
                     }
                     .esp-label {
                         color: #787878;
@@ -362,18 +374,9 @@ a {
                             color: red;
                         }
                     }
-                    .topic-sel-icon {
-                        background: transparent url("../images/assets/list_new_exp/btn_file_normal.png") no-repeat 0 0;
-                        cursor: pointer;
-                        display: inline-block;
-                        height: 39px;
-                        left: 80px;
-                        position: absolute;
-                        top: 60px;
-                        width: 51px;
-                    }
                     select {
-                        height: 40px;
+                        height: 30px;
+                        padding: 0 12px;
                     }
                     .related-exp {
                         background-color: #fff;
@@ -751,6 +754,9 @@ a {
     }
 }
 
+.head-text {
+    color: #83A578;
+}
 
 @media (max-width: 992px) {
     
